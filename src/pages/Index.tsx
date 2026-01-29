@@ -1,9 +1,9 @@
 import { Navigation } from '@/components/Navigation';
 import { HeroSection } from '@/components/HeroSection';
 import { PartnersMarquee } from '@/components/PartnersMarquee';
-import { FeaturedListings } from '@/components/FeaturedListings';
-import { AboutSection } from '@/components/AboutSection';
+import { AboutVideoSection } from '@/components/AboutVideoSection';
 import { StatsSection } from '@/components/StatsSection';
+import { FeaturedListings } from '@/components/FeaturedListings';
 import { ForbesSection } from '@/components/ForbesSection';
 import { Footer } from '@/components/Footer';
 
@@ -14,7 +14,7 @@ const Index = () => {
       <main>
         <HeroSection />
         <PartnersMarquee />
-        <AboutSection />
+        <AboutVideoSection />
         <StatsSection />
         <FeaturedListings />
         <ForbesSection />
