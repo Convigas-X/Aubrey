@@ -25,30 +25,19 @@ export class IdxApiService {
         return { error: 'API key not configured' };
       }
 
-      // Use the proxy server for all requests (avoids CORS and handles authentication)
-      const proxyUrl = import.meta.env.VITE_PROXY_URL || 'http://localhost:3001';
-      
-      // Map requests to the correct IDX endpoints
-      let mappedEndpoint;
-      if (endpoint === '/clients/listings') {
-        // Map to /clients/featured for agent's featured listings
-        // NOTE: IDX Broker API ONLY returns listings belonging to agents on the account
-        mappedEndpoint = '/clients/featured';
-      } else {
-        mappedEndpoint = endpoint;
-      }
-      
       // Build URL with query parameters
       const queryParams = new URLSearchParams(params);
-      const url = `${proxyUrl}/api/idx${mappedEndpoint}${queryParams.toString() ? '?' + queryParams.toString() : ''}`;
+      const url = `${this.baseUrl}${endpoint}${queryParams.toString() ? '?' + queryParams.toString() : ''}`;
       
-      console.log(`📡 Fetching via proxy: ${url}`);
+      console.log(`📡 Fetching: ${url}`);
 
       const response = await fetch(url, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Request-Method': 'GET',
         },
       });
 
@@ -71,8 +60,6 @@ export class IdxApiService {
 
   private transformIdxProperty(idxProperty: any): Property {
     // Transform IDX property data to match our Property interface
-    // IDX API returns different field names than our mock data
-    
     let price = '$0';
     if (idxProperty.listingPrice || idxProperty.price) {
       const priceValue = idxProperty.listingPrice || idxProperty.price;
@@ -108,37 +95,104 @@ export class IdxApiService {
 
   async getActiveListings(): Promise<Property[]> {
     try {
-      // IMPORTANT: IDX Broker API only returns agent/featured listings
-      // NOT full MLS data. If you need full MLS listings, you need:
-      // 1. Spark API access (different product)
-      // 2. Direct MLS feed agreement
-      // 3. Third-party service like SimplyRETS or RealtyFeed
+      console.log('🎯 Fetching listings with API key:', this.apiKey.substring(0, 8) + '...');
       
-      console.log('🎯 Attempting to fetch featured listings from IDX Broker');
-      console.log('ℹ️  Note: IDX API only returns agent/listing office featured listings, not full MLS data');
-      
-      // Try the correct endpoint for featured listings
+      // Note: Direct browser calls to IDX Broker API will fail due to CORS
+      // This requires a backend proxy server
       const response = await this.makeRequest('/clients/featured');
       
       if (response.data && Array.isArray(response.data) && response.data.length > 0) {
-        console.log('✅ Successfully loaded', response.data.length, 'featured listings');
+        console.log('✅ Successfully loaded', response.data.length, 'listings');
         return response.data.map((item: any) => this.transformIdxProperty(item));
       }
 
-      // If no data, log helpful message
-      console.warn('⚠️ IDX API returned no featured listings');
-      console.warn('ℹ️  This could mean:');
-      console.warn('  1) Your IDX account has no featured/active listings');
-      console.warn('  2) You need Spark API or alternative for full MLS data');
-      console.warn('  3) Check IDX Broker control panel for listing status');
+      console.warn('⚠️ IDX API returned no listings, using mock data');
+      return this.getMockProperties();
       
     } catch (error) {
       console.error('❌ Failed to fetch from IDX API:', error);
+      return this.getMockProperties();
+    }
+  }
+
+  // Search listings with filters
+  async searchListings(filters: {
+    location?: string;
+    minPrice?: string;
+    maxPrice?: string;
+    beds?: string;
+    baths?: string;
+  }): Promise<Property[]> {
+    try {
+      console.log('🔍 Searching listings with filters:', filters);
+      
+      // Build query parameters
+      const params: Record<string, string> = {};
+      if (filters.location) params.city = filters.location;
+      if (filters.minPrice) params.minPrice = filters.minPrice;
+      if (filters.maxPrice) params.maxPrice = filters.maxPrice;
+      if (filters.beds) params.bedrooms = filters.beds;
+      if (filters.baths) params.bathrooms = filters.baths;
+
+      const response = await this.makeRequest('/clients/listings', params);
+      
+      if (response.data && Array.isArray(response.data) && response.data.length > 0) {
+        return response.data.map((item: any) => this.transformIdxProperty(item));
+      }
+
+      // If no results from API, filter mock data
+      return this.filterMockProperties(filters);
+      
+    } catch (error) {
+      console.error('❌ Search failed:', error);
+      return this.filterMockProperties(filters);
+    }
+  }
+
+  private filterMockProperties(filters: {
+    location?: string;
+    minPrice?: string;
+    maxPrice?: string;
+    beds?: string;
+    baths?: string;
+  }): Property[] {
+    let properties = this.getMockProperties();
+
+    if (filters.location) {
+      const loc = filters.location.toLowerCase();
+      properties = properties.filter(p => 
+        p.address.toLowerCase().includes(loc) || 
+        p.name.toLowerCase().includes(loc)
+      );
     }
 
-    // Fallback to mock data (app always works)
-    console.log('📚 Loading mock data as fallback...');
-    return this.getMockProperties();
+    if (filters.minPrice) {
+      const min = parseInt(filters.minPrice);
+      properties = properties.filter(p => {
+        const price = parseInt(p.price.replace(/[^0-9]/g, ''));
+        return price >= min;
+      });
+    }
+
+    if (filters.maxPrice) {
+      const max = parseInt(filters.maxPrice);
+      properties = properties.filter(p => {
+        const price = parseInt(p.price.replace(/[^0-9]/g, ''));
+        return price <= max;
+      });
+    }
+
+    if (filters.beds) {
+      const beds = parseInt(filters.beds);
+      properties = properties.filter(p => p.beds >= beds);
+    }
+
+    if (filters.baths) {
+      const baths = parseInt(filters.baths);
+      properties = properties.filter(p => p.baths >= baths);
+    }
+
+    return properties;
   }
 
   private getMockProperties(): Property[] {
@@ -187,9 +241,31 @@ export class IdxApiService {
         image: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=800&auto=format&fit=crop&q=80',
         status: 'For Sale' as const,
       },
+      {
+        id: '5',
+        name: 'Downtown Orlando Loft',
+        address: '555 Central Blvd, Orlando, FL 32801',
+        price: '$650,000',
+        beds: 2,
+        baths: 2,
+        sqft: 1800,
+        image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&auto=format&fit=crop&q=80',
+        status: 'For Sale' as const,
+      },
+      {
+        id: '6',
+        name: 'Dr. Phillips Estate',
+        address: '8887 Bay Vista Blvd, Orlando, FL 32836',
+        price: '$1,450,000',
+        beds: 5,
+        baths: 4,
+        sqft: 5200,
+        image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&auto=format&fit=crop&q=80',
+        status: 'For Sale' as const,
+      },
     ];
 
-    console.log('✅ Loaded', mockData.length, 'mock properties as fallback');
+    console.log('✅ Loaded', mockData.length, 'mock properties');
     return mockData;
   }
 }

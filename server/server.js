@@ -8,11 +8,31 @@ dotenv.config({ path: '../.env' });
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// CORS configuration - allow requests from your frontend
+// CORS configuration - allow requests from your domains
+const allowedOrigins = [
+  'http://localhost:8080',
+  'http://localhost:3000',
+  'https://realestate36.realtor',
+  'https://www.realestate36.realtor',
+  'https://realestate360.realtor',
+  'https://www.realestate360.realtor',
+];
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:8080',
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === 'development') {
+      callback(null, true);
+    } else {
+      console.warn(`⚠️ CORS blocked request from: ${origin}`);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
 }));
 
 app.use(express.json());

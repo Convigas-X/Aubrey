@@ -6,25 +6,51 @@ import { PropertyCard } from '@/components/PropertyCard';
 import { idxApi } from '@/services/idxApi';
 import { Property } from '@/data/properties';
 import heroImage from '@/assets/hero-mansion.jpg';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Search, MapPin, X } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 
 type FilterType = 'all' | 'sale' | 'sold';
 
 const Listings = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
   const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  
+  // Get search filters from URL
+  const locationFilter = searchParams.get('location') || '';
+  const minPriceFilter = searchParams.get('minPrice') || '';
+  const maxPriceFilter = searchParams.get('maxPrice') || '';
+  const bedsFilter = searchParams.get('beds') || '';
+  const bathsFilter = searchParams.get('baths') || '';
 
   useEffect(() => {
     fetchProperties();
-  }, []);
+  }, [locationFilter, minPriceFilter, maxPriceFilter, bedsFilter, bathsFilter]);
 
   const fetchProperties = async () => {
     try {
       setLoading(true);
       setError(null);
-      const data = await idxApi.getActiveListings();
+      
+      // Check if we have search filters
+      const hasFilters = locationFilter || minPriceFilter || maxPriceFilter || bedsFilter || bathsFilter;
+      
+      let data: Property[];
+      if (hasFilters) {
+        console.log('🔍 Searching with filters:', { location: locationFilter, minPrice: minPriceFilter, maxPrice: maxPriceFilter, beds: bedsFilter, baths: bathsFilter });
+        data = await idxApi.searchListings({
+          location: locationFilter,
+          minPrice: minPriceFilter,
+          maxPrice: maxPriceFilter,
+          beds: bedsFilter,
+          baths: bathsFilter,
+        });
+      } else {
+        data = await idxApi.getActiveListings();
+      }
+      
       setProperties(data);
     } catch (err) {
       setError('Failed to load properties. Please try again later.');
@@ -34,6 +60,10 @@ const Listings = () => {
     }
   };
 
+  const clearFilters = () => {
+    setSearchParams({});
+  };
+
   const filteredProperties = properties.filter((property) => {
     if (activeFilter === 'all') return true;
     if (activeFilter === 'sale') return property.status === 'For Sale';
@@ -41,12 +71,20 @@ const Listings = () => {
     return true;
   });
 
+  // Build active filters display
+  const activeFiltersList = [];
+  if (locationFilter) activeFiltersList.push(`Location: ${locationFilter}`);
+  if (minPriceFilter) activeFiltersList.push(`Min: $${parseInt(minPriceFilter).toLocaleString()}`);
+  if (maxPriceFilter) activeFiltersList.push(`Max: $${parseInt(maxPriceFilter).toLocaleString()}`);
+  if (bedsFilter) activeFiltersList.push(`${bedsFilter}+ Beds`);
+  if (bathsFilter) activeFiltersList.push(`${bathsFilter}+ Baths`);
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative h-[60vh] overflow-hidden">
+      <section className="relative h-[50vh] overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={heroImage}
@@ -66,16 +104,48 @@ const Listings = () => {
               Property Listings
             </h1>
             <p className="mt-4 font-sans text-lg text-white/80 max-w-2xl mx-auto">
-              Explore our curated collection of available properties in Orlando
+              Explore our curated collection of available properties in Orlando & Central Florida
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Filter Tabs and Properties Grid */}
-      <section className="py-16 md:py-20">
+      <section className="py-12 md:py-16">
         <div className="container mx-auto px-6 lg:px-12">
-          {/* Filter Tabs - Moved below hero */}
+          
+          {/* Active Search Filters */}
+          {activeFiltersList.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-8 p-4 bg-accent/5 border border-accent/20 rounded-lg"
+            >
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="flex items-center gap-2 text-accent">
+                  <Search className="w-4 h-4" />
+                  <span className="font-sans text-sm font-medium">Search Results:</span>
+                </div>
+                {activeFiltersList.map((filter, index) => (
+                  <span
+                    key={index}
+                    className="inline-flex items-center px-3 py-1 bg-white border border-accent/30 rounded-full text-sm font-sans text-primary"
+                  >
+                    {filter}
+                  </span>
+                ))}
+                <button
+                  onClick={clearFilters}
+                  className="ml-auto flex items-center gap-1 text-sm text-muted-foreground hover:text-destructive transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                  Clear Filters
+                </button>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Filter Tabs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -148,8 +218,14 @@ const Listings = () => {
                   animate={{ opacity: 1 }}
                   className="text-center py-20"
                 >
-                  <p className="font-sans text-lg text-muted-foreground">
-                    No properties found in this category.
+                  <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+                    <MapPin className="w-8 h-8 text-muted-foreground" />
+                  </div>
+                  <p className="font-sans text-lg text-muted-foreground mb-2">
+                    No properties found
+                  </p>
+                  <p className="font-sans text-sm text-muted-foreground">
+                    Try adjusting your search filters
                   </p>
                 </motion.div>
               )}
