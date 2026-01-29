@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { PropertyCard } from '@/components/PropertyCard';
-import { idxApi } from '@/services/idxApi';
+import { sparkApi } from '@/services/sparkApi';
 import { Property } from '@/data/properties';
 import heroImage from '@/assets/hero-mansion.jpg';
 import { Loader2, Search, MapPin, X } from 'lucide-react';
@@ -40,7 +40,7 @@ const Listings = () => {
       let data: Property[];
       if (hasFilters) {
         console.log('🔍 Searching with filters:', { location: locationFilter, minPrice: minPriceFilter, maxPrice: maxPriceFilter, beds: bedsFilter, baths: bathsFilter });
-        data = await idxApi.searchListings({
+        data = await sparkApi.getListings({
           location: locationFilter,
           minPrice: minPriceFilter,
           maxPrice: maxPriceFilter,
@@ -48,7 +48,7 @@ const Listings = () => {
           baths: bathsFilter,
         });
       } else {
-        data = await idxApi.getActiveListings();
+        data = await sparkApi.getListings();
       }
       
       setProperties(data);

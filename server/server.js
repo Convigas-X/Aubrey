@@ -37,95 +37,135 @@ app.use(cors({
 
 app.use(express.json());
 
-// IDX API proxy endpoint
-app.get('/api/idx/*', async (req, res) => {
+// ==========================================
+// SPARK API PROXY (NEW - Full MLS Access)
+// ==========================================
+app.get('/api/spark/*', async (req, res) => {
   try {
-    const apiKey = process.env.VITE_IDX_API_KEY;
+    const sparkKey = process.env.VITE_SPARK_API_KEY || process.env.SPARK_API_KEY;
     
-    if (!apiKey) {
-      console.error('❌ API key not configured in environment');
-      return res.status(500).json({ error: 'IDX API key not configured' });
+    if (!sparkKey) {
+      console.error('❌ Spark API key not configured');
+      return res.status(500).json({ error: 'Spark API key not configured' });
     }
 
-    // Extract the actual IDX endpoint from the request
-    const idxEndpoint = req.params[0];
+    const sparkEndpoint = req.params[0];
     const queryParams = new URLSearchParams(req.query).toString();
+    const urlWithParams = '/' + sparkEndpoint + (queryParams ? '?' + queryParams : '');
+    const sparkUrl = `https://sparkapi.com/v1${urlWithParams}`;
     
-    // CORRECT IDX BROKER API FORMAT
-    // Based on official documentation: https://developers.idxbroker.com/
-    // Base URL: https://api.idxbroker.com/
-    // Headers:
-    //   - Content-Type: application/x-www-form-urlencoded (required)
-    //   - accesskey: YOUR_KEY (required)
-    //   - outputtype: json (optional)
-    
-    // Build the correct URL
-    // IDX uses paths like /clients/featured or /clients/listcomponents
-    let correctEndpoint;
-    
-    if (idxEndpoint === 'clients/listings') {
-      // For property listings, use /clients/featured (agent's featured listings)
-      // NOTE: IDX Broker API ONLY returns listings belonging to agents on the account
-      // It does NOT return full MLS data
-      correctEndpoint = '/clients/featured';
-    } else if (idxEndpoint === 'properties') {
-      // Alternative endpoint for properties
-      correctEndpoint = '/clients/featured';
-    } else {
-      // Use the endpoint as provided
-      correctEndpoint = '/' + idxEndpoint;
-    }
-    
-    // Add query parameters if any
-    const urlWithParams = correctEndpoint + (queryParams ? '?' + queryParams : '');
-    const idxUrl = `https://api.idxbroker.com${urlWithParams}`;
-    
-    console.log(`📡 Proxying request to: ${idxUrl}`);
-    console.log(`🔑 Using API key: ${apiKey.substring(0, 10)}...`);
+    console.log(`\n🎮 SPARK API PROXY`);
+    console.log(`📡 URL: ${sparkUrl}`);
+    console.log(`🔑 Key: ${sparkKey.substring(0, 15)}...`);
 
-    const response = await fetch(idxUrl, {
+    const response = await fetch(sparkUrl, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded', // REQUIRED by IDX API
-        'accesskey': apiKey, // REQUIRED - API key
-        'outputtype': 'json', // Optional but recommended
+        'Authorization': `Bearer ${sparkKey}`,
+        'X-SparkApi-User-Agent': 'RealEstate360/1.0',
+        'Content-Type': 'application/json',
       },
     });
 
-    console.log(`📊 Response status: ${response.status} ${response.statusText}`);
+    console.log(`📊 Status: ${response.status} ${response.statusText}`);
 
     if (!response.ok) {
       const errorBody = await response.text();
-      console.error('❌ IDX API error response:', errorBody);
-      throw new Error(`IDX API error: ${response.status} - ${errorBody}`);
+      console.error('❌ Spark API error:', errorBody);
+      throw new Error(`Spark API error: ${response.status} - ${errorBody}`);
     }
 
     const data = await response.json();
-    console.log(`✅ Successfully fetched ${data?.length || Object.keys(data || {}).length} items`);
+    const resultCount = data.D?.Results?.length || 0;
+    console.log(`✅ Spark Success! ${resultCount} listings found`);
     res.json(data);
   } catch (error) {
-    console.error('❌ Proxy error:', error);
+    console.error('❌ Spark Proxy error:', error);
     res.status(500).json({ 
-      error: 'Failed to fetch from IDX API',
+      error: 'Failed to fetch from Spark API',
       details: error.message 
     });
   }
 });
 
-// Health check endpoint
-app.get('/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+// Spark API Test Endpoint
+app.get('/test-spark', async (req, res) => {
+  try {
+    const sparkKey = process.env.VITE_SPARK_API_KEY || process.env.SPARK_API_KEY;
+    
+    console.log('🧪 Testing Spark API connection...');
+    console.log(`🔑 Using key: ${sparkKey ? sparkKey.substring(0, 15) + '...' : 'NOT SET'}`);
+    
+    const response = await fetch('https://sparkapi.com/v1/listings', {
+      headers: {
+        'Authorization': `Bearer ${sparkKey}`,
+        'X-SparkApi-User-Agent': 'RealEstate360/1.0',
+      },
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('❌ Spark test failed:', response.status, errorText);
+      return res.status(response.status).json({ 
+        success: false, 
+        error: errorText,
+        message: 'Spark API error. Check if token is valid.'
+      });
+    }
+
+    const data = await response.json();
+    const count = data.D?.Results?.length || 0;
+    console.log(`✅ Spark test successful! ${count} listings`);
+    
+    res.json({ 
+      success: true, 
+      data: data, 
+      count: count,
+      isDemo: sparkKey === '5uqf0yuds7gx11j942363fss1',
+      message: count > 0 ? 
+        `Connected! Found ${count} listings.` :
+        'Connected but no listings returned.'
+    });
+  } catch (error) {
+    console.error('❌ Spark test error:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: error.message
+    });
+  }
 });
 
-// Test endpoint to verify API key works
-app.get('/test-idx', async (req, res) => {
+// ==========================================
+// IDX BROKER API PROXY (Legacy)
+// ==========================================
+app.get('/api/idx/*', async (req, res) => {
   try {
     const apiKey = process.env.VITE_IDX_API_KEY;
     
-    console.log('🧪 Testing IDX API connection...');
+    if (!apiKey) {
+      console.error('❌ IDX API key not configured');
+      return res.status(500).json({ error: 'IDX API key not configured' });
+    }
+
+    const idxEndpoint = req.params[0];
+    const queryParams = new URLSearchParams(req.query).toString();
     
-    // Test with the correct endpoint
-    const response = await fetch('https://api.idxbroker.com/clients/featured', {
+    let correctEndpoint;
+    if (idxEndpoint === 'clients/listings') {
+      correctEndpoint = '/clients/featured';
+    } else if (idxEndpoint === 'properties') {
+      correctEndpoint = '/clients/featured';
+    } else {
+      correctEndpoint = '/' + idxEndpoint;
+    }
+    
+    const urlWithParams = correctEndpoint + (queryParams ? '?' + queryParams : '');
+    const idxUrl = `https://api.idxbroker.com${urlWithParams}`;
+    
+    console.log(`\n📍 IDX PROXY: ${idxUrl}`);
+
+    const response = await fetch(idxUrl, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         'accesskey': apiKey,
@@ -134,45 +174,58 @@ app.get('/test-idx', async (req, res) => {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error('❌ Test failed:', response.status, errorText);
-      return res.status(response.status).json({ 
-        success: false, 
-        error: errorText,
-        message: 'IDX API returned error. This could mean:' +
-          ' 1) API key is invalid, ' +
-          ' 2) Account has no featured listings, ' +
-          ' 3) API access is not enabled on the account.'
-      });
+      const errorBody = await response.text();
+      throw new Error(`IDX API error: ${response.status} - ${errorBody}`);
     }
 
     const data = await response.json();
-    console.log(`✅ Test successful! Found ${data?.length || 0} listings`);
-    
-    res.json({ 
-      success: true, 
-      data: data, 
-      count: data?.length || 0,
-      message: data?.length > 0 ? 
-        `Successfully connected! Found ${data.length} featured listings.` :
-        'Connected successfully, but account has no featured listings. Mock data will be used.'
-    });
+    console.log(`✅ IDX Success! ${data?.length || 0} items`);
+    res.json(data);
   } catch (error) {
-    console.error('❌ Test error:', error);
+    console.error('❌ IDX Proxy error:', error);
     res.status(500).json({ 
-      success: false, 
-      error: error.message,
-      message: 'Failed to connect to IDX API. Check API key and network connection.'
+      error: 'Failed to fetch from IDX API',
+      details: error.message 
     });
   }
 });
 
+// ==========================================
+// HEALTH & INFO ENDPOINTS
+// ==========================================
+app.get('/health', (req, res) => {
+  res.json({ 
+    status: 'OK', 
+    timestamp: new Date().toISOString(),
+    services: {
+      spark: process.env.VITE_SPARK_API_KEY ? 'configured' : 'not configured',
+      idx: process.env.VITE_IDX_API_KEY ? 'configured' : 'not configured'
+    }
+  });
+});
+
+// Root endpoint with API info
+app.get('/', (req, res) => {
+  res.json({
+    name: 'Real Estate 360 API Proxy',
+    version: '1.0.0',
+    endpoints: {
+      spark: '/api/spark/* - Spark API (Full MLS)',
+      idx: '/api/idx/* - IDX Broker (Agent listings)',
+      testSpark: '/test-spark - Test Spark connection',
+      health: '/health - Server health check'
+    },
+    domains: allowedOrigins
+  });
+});
+
 app.listen(PORT, () => {
-  console.log(`🚀 IDX Proxy Server running on http://localhost:${PORT}`);
-  console.log(`📍 Proxy endpoint: http://localhost:${PORT}/api/idx/*`);
-  console.log(`🩺 Health check: http://localhost:${PORT}/health`);
-  console.log(`🧪 Test endpoint: http://localhost:${PORT}/test-idx`);
-  console.log(`\n💡 IMPORTANT: IDX Broker API only returns agent/listing office featured listings.`);
-  console.log(`   It does NOT provide full MLS data. If you need full MLS listings,`);
-  console.log(`   contact IDX Broker about their Spark API or other solutions.`);
+  console.log(`\n🚀 Real Estate 360 Proxy Server`);
+  console.log(`📍 Running on: http://localhost:${PORT}`);
+  console.log(`\n📡 Available Endpoints:`);
+  console.log(`   • Spark API:  http://localhost:${PORT}/api/spark/*`);
+  console.log(`   • IDX Broker: http://localhost:${PORT}/api/idx/*`);
+  console.log(`   • Test Spark: http://localhost:${PORT}/test-spark`);
+  console.log(`   • Health:     http://localhost:${PORT}/health`);
+  console.log(`\n💡 Using Spark Demo Token? Test with: curl http://localhost:${PORT}/test-spark`);
 });
