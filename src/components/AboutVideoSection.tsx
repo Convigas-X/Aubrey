@@ -120,14 +120,10 @@ export const AboutVideoSection = () => {
             <p className="font-sans text-sm sm:text-base md:text-lg text-charcoal-light leading-relaxed">
               With <span className="text-primary font-medium">35+ years</span> of experience, Aubrey Hamid 
               has helped <span className="text-primary font-medium">1,000+ families</span> find their 
-              perfect home in Central Florida. As a licensed REALTOR® and broker, she leads Real Estate 360 
-              — an Orlando-based firm delivering creative deal-making and strategic solutions for buyers, 
-              sellers, and investors worldwide.
-            </p>
-            
-            <p className="font-sans text-sm sm:text-base md:text-lg text-charcoal-light leading-relaxed">
-              Built on <span className="text-accent font-medium">trust, integrity, and lasting partnerships</span>, 
-              we guide you through every step — from first home to investment portfolio.
+              perfect home in Central Florida. As a licensed REALTOR® and broker, <span className="text-primary font-medium">he</span> leads 
+              Real Estate 360 — delivering creative deal-making and strategic solutions for buyers, sellers, 
+              and investors worldwide. Built on trust and integrity, we guide you through every step of your 
+              real estate journey.
             </p>
           </div>
 
