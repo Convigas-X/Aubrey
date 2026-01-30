@@ -65,8 +65,10 @@ export const Navigation = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className={`lg:hidden p-2 transition-colors duration-300 ${
-                isScrolled ? 'text-primary' : 'text-white'
+              className={`lg:hidden p-2 rounded-lg transition-all duration-300 ${
+                isScrolled 
+                  ? 'text-primary hover:bg-gray-100' 
+                  : 'text-white bg-white/20 backdrop-blur-sm hover:bg-white/30 border border-white/30'
               }`}
               aria-label="Open menu"
             >
