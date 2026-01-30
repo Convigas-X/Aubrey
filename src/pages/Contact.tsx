@@ -400,20 +400,20 @@ const Contact = () => {
                     whileInView={{ opacity: 1, scale: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.8 }}
-                    className="absolute bottom-16 sm:bottom-20 left-1/2 transform -translate-x-1/2 bg-primary/95 backdrop-blur-sm border border-gold/30 rounded-lg sm:rounded-xl p-3 sm:p-5 shadow-2xl w-56 sm:w-auto sm:min-w-max max-w-[calc(100vw-2rem)]"
+                    className="absolute bottom-14 sm:bottom-20 left-1/2 -translate-x-1/2 bg-primary/95 backdrop-blur-sm border border-gold/30 rounded-lg sm:rounded-xl p-2.5 sm:p-5 shadow-2xl w-max max-w-[90vw] sm:max-w-xs md:max-w-sm"
                   >
-                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-primary/95 border-r border-b border-gold/30 rotate-45"></div>
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-primary/95 border-r border-b border-gold/30 rotate-45"></div>
                     
-                    <div className="flex items-start gap-2 sm:gap-4">
-                      <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0">
-                        <MapPin className="w-4 h-4 sm:w-6 sm:h-6 text-gold" />
+                    <div className="flex items-start gap-2 sm:gap-3">
+                      <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-gold" />
                       </div>
-                      <div className="min-w-0">
-                        <h3 className="font-sans font-semibold text-white text-sm sm:text-base">Real Estate 360</h3>
-                        <p className="font-sans text-white/80 text-xs sm:text-sm leading-relaxed mt-0.5 sm:mt-1">
-                          6441 S Chickasaw Trl
-                          <br />Orlando, FL 32829
-                          <br /><span className="hidden sm:inline">United States</span>
+                      <div className="min-w-0 overflow-hidden">
+                        <h3 className="font-sans font-semibold text-white text-xs sm:text-sm">Real Estate 360</h3>
+                        <p className="font-sans text-white/80 text-[10px] sm:text-xs leading-relaxed mt-0.5">
+                          6441 S Chickasaw Trl<br />
+                          Orlando, FL 32829<br />
+                          <span className="hidden sm:inline">United States</span>
                         </p>
                       </div>
                     </div>
