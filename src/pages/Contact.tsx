@@ -58,7 +58,7 @@ const Contact = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative h-[60vh] overflow-hidden">
+      <section className="relative h-[45vh] sm:h-[55vh] md:h-[60vh] overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={heroImage}
@@ -68,18 +68,18 @@ const Contact = () => {
           <div className="absolute inset-0 bg-black/50" />
         </div>
         
-        <div className="relative z-10 h-full flex items-center justify-center text-center px-6">
+        <div className="relative z-10 h-full flex items-center justify-center text-center px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="max-w-3xl mx-auto"
           >
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white">
               Contact Us
             </h1>
-            <div className="w-20 h-1 bg-gold mx-auto mt-6 rounded-full"></div>
-            <p className="mt-6 font-sans text-lg text-white/90 leading-relaxed">
+            <div className="w-16 sm:w-20 h-1 bg-gold mx-auto mt-4 sm:mt-6 rounded-full"></div>
+            <p className="mt-4 sm:mt-6 font-sans text-base sm:text-lg text-white/90 leading-relaxed">
               Get in touch with our luxury real estate specialists. We're here to help you find your dream property in Orlando, Central Florida and beyond.
             </p>
           </motion.div>
@@ -87,9 +87,9 @@ const Contact = () => {
       </section>
 
       {/* Main Content */}
-      <section className="py-16 md:py-24 relative">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid lg:grid-cols-3 gap-10">
+      <section className="py-12 sm:py-16 md:py-24 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="grid lg:grid-cols-3 gap-6 sm:gap-10">
             
             {/* Contact Information Card */}
             <motion.div
@@ -99,19 +99,19 @@ const Contact = () => {
               className="lg:col-span-1"
             >
               <Card className="h-full bg-card/80 backdrop-blur-sm border-gold/10 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardContent className="p-8">
+                <CardContent className="p-5 sm:p-8">
                   <motion.h2 
-                    className="font-serif text-2xl md:text-3xl text-primary mb-8 pb-4 border-b border-gold/20"
+                    className="font-serif text-xl sm:text-2xl md:text-3xl text-primary mb-6 sm:mb-8 pb-3 sm:pb-4 border-b border-gold/20"
                     variants={itemVariants}
                     initial="hidden"
                     animate="visible"
                   >
                     Get In Touch
-                    <div className="w-16 h-0.5 bg-gold mt-3"></div>
+                    <div className="w-12 sm:w-16 h-0.5 bg-gold mt-2 sm:mt-3"></div>
                   </motion.h2>
 
                   <motion.div 
-                    className="space-y-8"
+                    className="space-y-5 sm:space-y-8"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -165,15 +165,15 @@ const Contact = () => {
                     ].map((item, index) => (
                       <motion.div 
                         key={index} 
-                        className="flex items-start gap-4 group"
+                        className="flex items-start gap-3 sm:gap-4 group"
                         variants={itemVariants}
                       >
-                        <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0 group-hover:bg-gold/20 transition-colors duration-300">
-                          <item.icon className="w-5 h-5 text-gold" />
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0 group-hover:bg-gold/20 transition-colors duration-300">
+                          <item.icon className="w-4 h-4 sm:w-5 sm:h-5 text-gold" />
                         </div>
-                        <div className="flex-1">
-                          <h3 className="font-sans font-semibold text-primary">{item.title}</h3>
-                          <p className="mt-1 font-sans text-muted-foreground leading-relaxed">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-sans font-semibold text-primary text-sm sm:text-base">{item.title}</h3>
+                          <p className="mt-0.5 sm:mt-1 font-sans text-muted-foreground leading-relaxed text-xs sm:text-sm">
                             {item.content}
                           </p>
                         </div>
@@ -192,15 +192,15 @@ const Contact = () => {
               className="lg:col-span-2"
             >
               <Card className="h-full bg-card/80 backdrop-blur-sm border-gold/10 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardContent className="p-8">
+                <CardContent className="p-5 sm:p-8">
                   <motion.h2 
-                    className="font-serif text-2xl md:text-3xl text-primary mb-8 pb-4 border-b border-gold/20"
+                    className="font-serif text-xl sm:text-2xl md:text-3xl text-primary mb-6 sm:mb-8 pb-3 sm:pb-4 border-b border-gold/20"
                     variants={itemVariants}
                     initial="hidden"
                     animate="visible"
                   >
                     Send Us a Message
-                    <div className="w-16 h-0.5 bg-gold mt-3"></div>
+                    <div className="w-12 sm:w-16 h-0.5 bg-gold mt-2 sm:mt-3"></div>
                   </motion.h2>
 
                   {isSubmitted && (
@@ -208,22 +208,22 @@ const Contact = () => {
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0 }}
-                      className="mb-6 p-4 bg-green-500/10 border border-green-500/20 rounded-lg flex items-center gap-3"
+                      className="mb-4 sm:mb-6 p-3 sm:p-4 bg-green-500/10 border border-green-500/20 rounded-lg flex items-center gap-2 sm:gap-3"
                     >
-                      <CheckCircle className="w-5 h-5 text-green-500" />
-                      <span className="font-sans text-green-700">Thank you! Your message has been sent successfully.</span>
+                      <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" />
+                      <span className="font-sans text-green-700 text-xs sm:text-sm">Thank you! Your message has been sent successfully.</span>
                     </motion.div>
                   )}
 
                   <motion.form 
                     onSubmit={handleSubmit} 
-                    className="space-y-6"
+                    className="space-y-4 sm:space-y-6"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
                   >
                     <motion.div variants={itemVariants}>
-                      <label htmlFor="name" className="block font-sans text-sm font-medium text-charcoal-light mb-2">
+                      <label htmlFor="name" className="block font-sans text-xs sm:text-sm font-medium text-charcoal-light mb-1.5 sm:mb-2">
                         Full Name *
                       </label>
                       <Input
@@ -232,15 +232,15 @@ const Contact = () => {
                         name="name"
                         value={formData.name}
                         onChange={(e) => handleChange('name', e.target.value)}
-                        className="w-full px-4 py-3 border border-border bg-background font-sans text-primary focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all duration-200 h-12"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-border bg-background font-sans text-primary focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all duration-200 h-10 sm:h-12"
                         required
                         placeholder="Enter your full name"
                       />
                     </motion.div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                       <motion.div variants={itemVariants}>
-                        <label htmlFor="email" className="block font-sans text-sm font-medium text-charcoal-light mb-2">
+                        <label htmlFor="email" className="block font-sans text-xs sm:text-sm font-medium text-charcoal-light mb-1.5 sm:mb-2">
                           Email Address *
                         </label>
                         <Input
@@ -249,13 +249,13 @@ const Contact = () => {
                           name="email"
                           value={formData.email}
                           onChange={(e) => handleChange('email', e.target.value)}
-                          className="w-full px-4 py-3 border border-border bg-background font-sans text-primary focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all duration-200 h-12"
+                          className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-border bg-background font-sans text-primary focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all duration-200 h-10 sm:h-12"
                           required
                           placeholder="your.email@example.com"
                         />
                       </motion.div>
                       <motion.div variants={itemVariants}>
-                        <label htmlFor="phone" className="block font-sans text-sm font-medium text-charcoal-light mb-2">
+                        <label htmlFor="phone" className="block font-sans text-xs sm:text-sm font-medium text-charcoal-light mb-1.5 sm:mb-2">
                           Phone Number
                         </label>
                         <Input
@@ -264,21 +264,21 @@ const Contact = () => {
                           name="phone"
                           value={formData.phone}
                           onChange={(e) => handleChange('phone', e.target.value)}
-                          className="w-full px-4 py-3 border border-border bg-background font-sans text-primary focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all duration-200 h-12"
+                          className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-border bg-background font-sans text-primary focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all duration-200 h-10 sm:h-12"
                           placeholder="(123) 456-7890"
                         />
                       </motion.div>
                     </div>
 
                     <motion.div variants={itemVariants}>
-                      <label htmlFor="interest" className="block font-sans text-sm font-medium text-charcoal-light mb-2">
+                      <label htmlFor="interest" className="block font-sans text-xs sm:text-sm font-medium text-charcoal-light mb-1.5 sm:mb-2">
                         I'm Interested In
                       </label>
                       <Select
                         value={formData.interest}
                         onValueChange={(value) => handleChange('interest', value)}
                       >
-                        <SelectTrigger className="w-full h-12 border border-border bg-background font-sans text-primary focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all duration-200">
+                        <SelectTrigger className="w-full h-10 sm:h-12 border border-border bg-background font-sans text-primary focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all duration-200">
                           <SelectValue placeholder="Select your interest" />
                         </SelectTrigger>
                         <SelectContent>
@@ -292,7 +292,7 @@ const Contact = () => {
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
-                      <label htmlFor="message" className="block font-sans text-sm font-medium text-charcoal-light mb-2">
+                      <label htmlFor="message" className="block font-sans text-xs sm:text-sm font-medium text-charcoal-light mb-1.5 sm:mb-2">
                         Message *
                       </label>
                       <Textarea
@@ -300,19 +300,19 @@ const Contact = () => {
                         name="message"
                         value={formData.message}
                         onChange={(e) => handleChange('message', e.target.value)}
-                        rows={6}
-                        className="w-full px-4 py-3 border border-border bg-background font-sans text-primary focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all duration-200 resize-none"
+                        rows={5}
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-border bg-background font-sans text-primary focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all duration-200 resize-none"
                         required
                         placeholder="Tell us about your real estate needs..."
                       />
                     </motion.div>
 
-                    <motion.div variants={itemVariants} className="pt-2">
+                    <motion.div variants={itemVariants} className="pt-1 sm:pt-2">
                       <Button 
                         type="submit" 
-                        className="bg-gradient-to-r from-gold to-gold-dark text-primary-foreground px-8 py-4 font-sans text-sm font-semibold tracking-wide uppercase transition-all duration-300 hover:from-gold-dark hover:to-gold hover:shadow-lg hover:-translate-y-0.5 w-full md:w-auto"
+                        className="bg-gradient-to-r from-gold to-gold-dark text-primary-foreground px-6 sm:px-8 py-3 sm:py-4 font-sans text-xs sm:text-sm font-semibold tracking-wide uppercase transition-all duration-300 hover:from-gold-dark hover:to-gold hover:shadow-lg hover:-translate-y-0.5 w-full sm:w-auto"
                       >
-                        <Send className="w-4 h-4 mr-2" />
+                        <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2" />
                         Send Message
                       </Button>
                     </motion.div>
@@ -325,24 +325,24 @@ const Contact = () => {
       </section>
 
       {/* Premium Map Section - Above Footer */}
-      <section className="relative py-16 md:py-24 bg-primary">
+      <section className="relative py-12 sm:py-16 md:py-24 bg-primary">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-transparent"></div>
         <div className="absolute -left-1/4 -bottom-1/4 w-full h-full rounded-full bg-gold/5 blur-3xl"></div>
         
-        <div className="container mx-auto px-6 lg:px-12 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12 md:mb-16"
+            className="text-center mb-8 sm:mb-12 md:mb-16"
           >
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white">
               Visit Our Orlando Office
             </h2>
-            <div className="w-24 h-1 bg-gold mx-auto mt-6 rounded-full"></div>
-            <p className="mt-6 font-sans text-lg text-white/80 max-w-2xl mx-auto">
+            <div className="w-16 sm:w-24 h-1 bg-gold mx-auto mt-4 sm:mt-6 rounded-full"></div>
+            <p className="mt-4 sm:mt-6 font-sans text-sm sm:text-lg text-white/80 max-w-2xl mx-auto">
               Conveniently located in Orlando, FL. Schedule an appointment or drop by during business hours.
             </p>
           </motion.div>
@@ -356,9 +356,9 @@ const Contact = () => {
           >
             <div className="relative">
               {/* Premium frame effect */}
-              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-gold via-gold-light to-gold opacity-30 blur-sm"></div>
+              <div className="absolute -inset-1 rounded-xl sm:rounded-2xl bg-gradient-to-r from-gold via-gold-light to-gold opacity-30 blur-sm"></div>
               
-              <div className="relative h-96 rounded-xl overflow-hidden shadow-2xl border border-gold/20">
+              <div className="relative h-64 sm:h-80 md:h-96 rounded-lg sm:rounded-xl overflow-hidden shadow-2xl border border-gold/20">
                 <iframe 
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.202850147928!2d-81.29847668488758!3d28.538383482339053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e768e0c077c5e5%3A0x605931a201592677!2sOrlando%2C%20FL%2032829%2C%20USA!5e0!3m2!1sen!2sus!4v1705791234567!5m2!1sen!2sus"
                   width="100%" 
@@ -427,7 +427,7 @@ const Contact = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="absolute top-6 right-6 bg-gradient-to-r from-gold to-gold-dark text-primary px-4 py-2 rounded-lg font-sans font-semibold text-xs shadow-lg"
+                className="absolute top-3 sm:top-6 right-3 sm:right-6 bg-gradient-to-r from-gold to-gold-dark text-primary px-2 sm:px-4 py-1 sm:py-2 rounded-md sm:rounded-lg font-sans font-semibold text-[10px] sm:text-xs shadow-lg"
               >
                 Prestige Location
               </motion.div>
@@ -440,9 +440,9 @@ const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-12 text-center"
+            className="mt-8 sm:mt-12 text-center"
           >
-            <p className="font-sans text-white/70 text-sm">
+            <p className="font-sans text-white/70 text-xs sm:text-sm">
               <span className="font-semibold text-gold">Directions:</span> 
               Located in the heart of Orlando, easily accessible from major highways. 
               Free parking available on-site.

@@ -50,32 +50,32 @@ export const PropertyCard = ({
       </div>
 
       {/* Content */}
-      <div className="pt-5 pb-2">
-        <h3 className="font-serif text-xl md:text-2xl text-primary">
+      <div className="pt-4 sm:pt-5 pb-2">
+        <h3 className="font-serif text-lg sm:text-xl md:text-2xl text-primary">
           {name}
         </h3>
-        <p className="mt-1 font-sans text-sm text-muted-foreground">
+        <p className="mt-1 font-sans text-xs sm:text-sm text-muted-foreground">
           {address}
         </p>
 
         {/* Specs */}
-        <div className="mt-4 flex items-center gap-6 font-sans text-sm text-charcoal-light">
-          <div className="flex items-center gap-1.5">
-            <Bed size={16} className="text-muted-foreground" />
+        <div className="mt-3 sm:mt-4 flex items-center gap-3 sm:gap-6 font-sans text-xs sm:text-sm text-charcoal-light">
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            <Bed size={14} className="sm:w-4 sm:h-4 text-muted-foreground" />
             <span>{beds} BD</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <Bath size={16} className="text-muted-foreground" />
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            <Bath size={14} className="sm:w-4 sm:h-4 text-muted-foreground" />
             <span>{baths} BA</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <Square size={16} className="text-muted-foreground" />
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            <Square size={14} className="sm:w-4 sm:h-4 text-muted-foreground" />
             <span>{sqft.toLocaleString()} Sq.Ft.</span>
           </div>
         </div>
 
         {/* Price */}
-        <p className="mt-4 font-serif text-2xl text-primary">
+        <p className="mt-3 sm:mt-4 font-serif text-xl sm:text-2xl text-primary">
           {price}
         </p>
       </div>

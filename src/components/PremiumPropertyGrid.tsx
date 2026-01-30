@@ -24,17 +24,20 @@ export const PremiumPropertyGrid = ({ properties }: PremiumPropertyGridProps) =>
   const isChateauCard = (propertyId: string) => propertyId === 'chateau-lumiere';
   
   const getCardSize = (index: number, propertyId?: string): string => {
-    // Special case: Combined card spans FULL WIDTH and double height
+    // Mobile: all cards full width, no complex spans
+    // Desktop: masonry layout
+    
+    // Special case: Combined card spans FULL WIDTH and double height on desktop
     if (isCombinedCard(index)) {
-      return 'col-span-2 row-span-2'; // Full width, double height (like grid-spot 2x2)
+      return 'col-span-1 sm:col-span-2 lg:col-span-2 row-span-1 sm:row-span-2'; 
     }
     
-    // Special case: Chateau Lumière spans ALL 3 COLUMNS, single row height
+    // Special case: Chateau Lumière spans ALL 3 COLUMNS on desktop
     if (propertyId && isChateauCard(propertyId)) {
-      return 'col-span-3 row-span-1'; // ULTRA full width across entire grid
+      return 'col-span-1 sm:col-span-2 lg:col-span-3 row-span-1';
     }
     
-    // Default: single cell
+    // Default: single cell on mobile, normal grid on desktop
     return 'col-span-1 row-span-1';
   };
   
@@ -42,9 +45,9 @@ export const PremiumPropertyGrid = ({ properties }: PremiumPropertyGridProps) =>
   const filteredProperties = properties.filter((p) => p.id !== 'hollywood-hills-villa');
   
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 md:px-6">
-      {/* Premium Compact Masonry Grid - now with Siena full width */}
-      <div className="grid grid-cols-3 gap-4 md:gap-5 auto-rows-[250px] md:auto-rows-[280px] lg:auto-rows-[320px]">
+    <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6">
+      {/* Premium Compact Masonry Grid - Responsive: mobile single column, desktop masonry */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4 md:gap-5 auto-rows-[350px] sm:auto-rows-[250px] md:auto-rows-[280px] lg:auto-rows-[320px]">
         {filteredProperties.map((property, index) => {
           // Create combined card for Siena + Hollywood Hills
           if (property.id === 'siena-residence') {
@@ -67,8 +70,8 @@ export const PremiumPropertyGrid = ({ properties }: PremiumPropertyGridProps) =>
                 }}
                 whileHover={{ scale: 1.01 }}
               >
-                {/* Large combined card layout - vertical split, FULL WIDTH */}
-                <div className="absolute inset-0 flex flex-col">
+                {/* Mobile: Stack properties vertically, Desktop: side by side split */}
+                <div className="absolute inset-0 flex flex-col sm:flex-col">
                   {/* Top Property - Siena Luxury Residence (larger portion) */}
                   <div className="relative flex-[2] bg-muted">
                     <img
@@ -87,22 +90,22 @@ export const PremiumPropertyGrid = ({ properties }: PremiumPropertyGridProps) =>
                     </div>
                     
                     {/* Property Info - Top */}
-                    <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white z-10">
-                      <div className="space-y-1">
-                        <h3 className="font-serif text-lg md:text-xl font-bold mb-0.5 drop-shadow-lg leading-tight">
+                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-3 md:p-4 text-white z-10">
+                      <div className="space-y-0.5 sm:space-y-1">
+                        <h3 className="font-serif text-base sm:text-lg md:text-xl font-bold mb-0.5 drop-shadow-lg leading-tight">
                           {siena.name}
                         </h3>
-                        <p className="font-sans text-xs md:text-sm text-white/90 mb-1 truncate">
+                        <p className="font-sans text-xs sm:text-xs md:text-sm text-white/90 mb-1 truncate">
                           {siena.address}
                         </p>
-                        <div className="flex items-center gap-2 text-xs text-white/80">
+                        <div className="flex items-center gap-2 text-[10px] sm:text-xs text-white/80">
                           <span>{siena.beds} BD</span>
                           <span>•</span>
                           <span>{siena.baths} BA</span>
                           <span>•</span>
                           <span>{siena.sqft.toLocaleString()}</span>
                         </div>
-                        <p className="font-serif text-lg md:text-xl font-bold text-accent drop-shadow-lg">
+                        <p className="font-serif text-base sm:text-lg md:text-xl font-bold text-accent drop-shadow-lg">
                           {siena.price}
                         </p>
                       </div>
@@ -110,7 +113,7 @@ export const PremiumPropertyGrid = ({ properties }: PremiumPropertyGridProps) =>
                   </div>
                   
                   {/* Divider with luxury accent */}
-                  <div className="h-1 bg-gradient-to-r from-transparent via-accent to-transparent" />
+                  <div className="h-1 bg-gradient-to-r from-transparent via-accent to-transparent hidden sm:block" />
                   
                   {/* Bottom Property - Hollywood Hills Villa (smaller portion) */}
                   <div className="relative flex-1 bg-muted">
@@ -123,22 +126,22 @@ export const PremiumPropertyGrid = ({ properties }: PremiumPropertyGridProps) =>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                     
                     {/* Property Info - Bottom */}
-                    <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white z-10">
-                      <div className="space-y-1">
-                        <h3 className="font-serif text-sm md:text-base font-bold mb-0.5 drop-shadow-lg leading-tight">
+                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-3 md:p-4 text-white z-10">
+                      <div className="space-y-0.5 sm:space-y-1">
+                        <h3 className="font-serif text-sm sm:text-sm md:text-base font-bold mb-0.5 drop-shadow-lg leading-tight">
                           {hollywood.name}
                         </h3>
-                        <p className="font-sans text-xs text-white/90 mb-1 truncate">
+                        <p className="font-sans text-[10px] sm:text-xs text-white/90 mb-1 truncate">
                           {hollywood.address}
                         </p>
-                        <div className="flex items-center gap-2 text-xs text-white/80">
+                        <div className="flex items-center gap-2 text-[10px] sm:text-xs text-white/80">
                           <span>{hollywood.beds} BD</span>
                           <span>•</span>
                           <span>{hollywood.baths} BA</span>
                           <span>•</span>
                           <span>{hollywood.sqft.toLocaleString()}</span>
                         </div>
-                        <p className="font-serif text-base md:text-lg font-bold text-accent drop-shadow-lg">
+                        <p className="font-serif text-sm sm:text-base md:text-lg font-bold text-accent drop-shadow-lg">
                           {hollywood.price}
                         </p>
                       </div>
@@ -188,8 +191,8 @@ export const PremiumPropertyGrid = ({ properties }: PremiumPropertyGridProps) =>
               </div>
               
               {/* Status Badge - Top Left */}
-              <div className="absolute top-3 left-3 z-20">
-                <span className={`px-2 py-1 rounded-full text-xs tracking-wider uppercase font-semibold shadow-md backdrop-blur-sm ${
+              <div className="absolute top-2 sm:top-3 left-2 sm:left-3 z-20">
+                <span className={`px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs tracking-wider uppercase font-semibold shadow-md backdrop-blur-sm ${
                   property.status === 'For Sale'
                     ? 'bg-white/90 text-primary'
                     : 'bg-primary/90 text-white'
@@ -199,38 +202,38 @@ export const PremiumPropertyGrid = ({ properties }: PremiumPropertyGridProps) =>
               </div>
               
               {/* Property Info - Bottom */}
-              <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white z-10">
-                <div className="space-y-1">
+              <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 md:p-4 text-white z-10">
+                <div className="space-y-0.5 sm:space-y-1">
                   {/* Property Name */}
-                  <h3 className="font-serif text-base md:text-lg lg:text-xl font-bold mb-0.5 drop-shadow-lg leading-tight">
+                  <h3 className="font-serif text-sm sm:text-base md:text-lg lg:text-xl font-bold mb-0.5 drop-shadow-lg leading-tight">
                     {property.name}
                   </h3>
                   
                   {/* Address */}
-                  <p className="font-sans text-xs md:text-sm text-white/90 mb-1 truncate">
+                  <p className="font-sans text-[10px] sm:text-xs md:text-sm text-white/90 mb-1 truncate">
                     {property.address}
                   </p>
                   
                   {/* Specs - Compact */}
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-white/80 mb-1">
-                    <span className="flex items-center gap-1">
-                      <Bed size={12} className="text-accent" />
+                  <div className="flex flex-wrap items-center gap-x-2 sm:gap-x-3 gap-y-0.5 text-[10px] sm:text-xs text-white/80 mb-1">
+                    <span className="flex items-center gap-0.5 sm:gap-1">
+                      <Bed size={10} className="sm:w-3 sm:h-3 text-accent" />
                       <span className="font-medium">{property.beds}</span>
                     </span>
-                    <span>•</span>
-                    <span className="flex items-center gap-1">
-                      <Bath size={12} className="text-accent" />
+                    <span className="hidden sm:inline">•</span>
+                    <span className="flex items-center gap-0.5 sm:gap-1">
+                      <Bath size={10} className="sm:w-3 sm:h-3 text-accent" />
                       <span className="font-medium">{property.baths}</span>
                     </span>
-                    <span>•</span>
-                    <span className="flex items-center gap-1">
-                      <Square size={12} className="text-accent" />
+                    <span className="hidden sm:inline">•</span>
+                    <span className="flex items-center gap-0.5 sm:gap-1">
+                      <Square size={10} className="sm:w-3 sm:h-3 text-accent" />
                       <span className="font-medium">{property.sqft.toLocaleString()}</span>
                     </span>
                   </div>
                   
                   {/* Price - Prominent */}
-                  <p className="font-serif text-lg md:text-xl lg:text-2xl font-bold text-accent drop-shadow-lg">
+                  <p className="font-serif text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-accent drop-shadow-lg">
                     {property.price}
                   </p>
                 </div>

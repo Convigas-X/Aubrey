@@ -32,10 +32,10 @@ const socialLinks = [
 export const Footer = () => {
   return (
     <footer className="bg-primary text-white">
-      <div className="container mx-auto px-6 lg:px-12 pt-16 md:pt-20 pb-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 pt-12 sm:pt-16 md:pt-20 pb-8">
         
-        {/* Top Section - 4 Columns */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+        {/* Top Section - 4 Columns on desktop, 2 on tablet, 1 on mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8">
           
           {/* Brand & Contact */}
           <motion.div
@@ -43,9 +43,10 @@ export const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            className="text-center sm:text-left"
           >
             <Link to="/" className="inline-block">
-              <span className="font-serif text-2xl tracking-[0.1em] text-white">
+              <span className="font-serif text-xl sm:text-2xl tracking-[0.1em] text-white">
                 RealEstate 360
               </span>
             </Link>
@@ -53,7 +54,7 @@ export const Footer = () => {
               Orlando's trusted real estate partner for over 35 years.
             </p>
             
-            <div className="mt-6 flex gap-3">
+            <div className="mt-6 flex gap-3 justify-center sm:justify-start">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
@@ -75,6 +76,7 @@ export const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-center sm:text-left"
           >
             <h4 className="font-sans text-xs tracking-[0.2em] uppercase text-white/50 mb-5 font-medium">
               Company
@@ -99,6 +101,7 @@ export const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-center sm:text-left"
           >
             <h4 className="font-sans text-xs tracking-[0.2em] uppercase text-white/50 mb-5 font-medium">
               Properties
@@ -123,6 +126,7 @@ export const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-center sm:text-left"
           >
             <h4 className="font-sans text-xs tracking-[0.2em] uppercase text-white/50 mb-5 font-medium">
               Contact
@@ -162,29 +166,29 @@ export const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 py-8 border-t border-b border-white/10"
+          className="mt-10 sm:mt-12 py-6 sm:py-8 border-t border-b border-white/10"
         >
-          <div className="flex flex-col sm:flex-row items-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
             <div className="relative">
-              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/40">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-gold/40">
                 <img 
                   src="/aubary.png" 
                   alt="Aubrey Hamid" 
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-500 rounded-full border-2 border-primary" />
+              <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 sm:w-4 sm:h-4 bg-green-500 rounded-full border-2 border-primary" />
             </div>
             <div className="text-center sm:text-left">
-              <h5 className="font-serif text-lg text-white">Aubrey Hamid</h5>
-              <p className="font-sans text-sm text-white/60">Broker & Founder · 35+ Years Experience</p>
+              <h5 className="font-serif text-base sm:text-lg text-white">Aubrey Hamid</h5>
+              <p className="font-sans text-xs sm:text-sm text-white/60">Broker & Founder · 35+ Years Experience</p>
             </div>
-            <div className="sm:ml-auto">
+            <div className="sm:ml-auto mt-2 sm:mt-0">
               <a 
                 href="tel:+13212286880"
-                className="inline-flex items-center gap-2 bg-gold text-primary px-5 py-2.5 font-sans text-sm font-medium rounded hover:bg-gold/90 transition-colors"
+                className="inline-flex items-center gap-2 bg-gold text-primary px-4 sm:px-5 py-2 sm:py-2.5 font-sans text-xs sm:text-sm font-medium rounded hover:bg-gold/90 transition-colors"
               >
-                <Phone size={16} />
+                <Phone size={14} className="sm:w-4 sm:h-4" />
                 Call Now
               </a>
             </div>
@@ -192,11 +196,11 @@ export const Footer = () => {
         </motion.div>
 
         {/* Bottom Bar */}
-        <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-sans text-xs text-white/40">
+        <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 text-center sm:text-left">
+          <p className="font-sans text-[10px] sm:text-xs text-white/40">
             © 2026 RealEstate 360. All rights reserved.
           </p>
-          <p className="font-sans text-xs text-white/40">
+          <p className="font-sans text-[10px] sm:text-xs text-white/40">
             Designed by Tritanium Global
           </p>
         </div>

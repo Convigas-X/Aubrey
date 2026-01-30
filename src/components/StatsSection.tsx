@@ -137,9 +137,9 @@ const RangeCounter = ({ startValue, endValue, duration = 2000, delay = 0 }: {
 
 export const StatsSection = () => {
   return (
-    <section className="py-12 md:py-20 bg-background">
-      <div className="container mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6 max-w-7xl mx-auto">
+    <section className="py-10 sm:py-12 md:py-20 bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-6 max-w-7xl mx-auto">
           {/* Total Sales Volume */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -148,10 +148,10 @@ export const StatsSection = () => {
             transition={{ duration: 0.6, delay: 0 }}
             className="text-center"
           >
-            <div className="stat-number text-primary">
+            <div className="stat-number text-primary text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
               <StatCounter value="$15M+" duration={2000} delay={200} />
             </div>
-            <p className="mt-3 font-sans text-base tracking-[0.1em] uppercase text-muted-foreground">
+            <p className="mt-2 sm:mt-3 font-sans text-[10px] sm:text-xs md:text-base tracking-[0.05em] sm:tracking-[0.1em] uppercase text-muted-foreground">
               Total Sales Volume
             </p>
           </motion.div>
@@ -164,10 +164,10 @@ export const StatsSection = () => {
             transition={{ duration: 0.6, delay: 0 }}
             className="text-center"
           >
-            <div className="stat-number text-primary">
+            <div className="stat-number text-primary text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
               <StatCounter value="34+" duration={2000} delay={500} />
             </div>
-            <p className="mt-3 font-sans text-base tracking-[0.1em] uppercase text-muted-foreground">
+            <p className="mt-2 sm:mt-3 font-sans text-[10px] sm:text-xs md:text-base tracking-[0.05em] sm:tracking-[0.1em] uppercase text-muted-foreground">
               Homes Sold
             </p>
           </motion.div>
@@ -180,10 +180,10 @@ export const StatsSection = () => {
             transition={{ duration: 0.6, delay: 0 }}
             className="text-center"
           >
-            <div className="stat-number text-primary">
+            <div className="stat-number text-primary text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
               <RangeCounter startValue="$19k" endValue="$896k" duration={2000} delay={300} />
             </div>
-            <p className="mt-3 font-sans text-base tracking-[0.1em] uppercase text-muted-foreground">
+            <p className="mt-2 sm:mt-3 font-sans text-[10px] sm:text-xs md:text-base tracking-[0.05em] sm:tracking-[0.1em] uppercase text-muted-foreground">
               Price-Range
             </p>
           </motion.div>
@@ -196,10 +196,10 @@ export const StatsSection = () => {
             transition={{ duration: 0.6, delay: 0 }}
             className="text-center"
           >
-            <div className="stat-number text-primary">
+            <div className="stat-number text-primary text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
               <StatCounter value="$475k" duration={2000} delay={800} />
             </div>
-            <p className="mt-3 font-sans text-base tracking-[0.1em] uppercase text-muted-foreground">
+            <p className="mt-2 sm:mt-3 font-sans text-[10px] sm:text-xs md:text-base tracking-[0.05em] sm:tracking-[0.1em] uppercase text-muted-foreground">
               Average Price Point
             </p>
           </motion.div>

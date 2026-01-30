@@ -9,7 +9,7 @@ export const AboutVideoSection = () => {
   const videoId = 'ii3G31Azaco';
 
   return (
-    <section className="py-20 md:py-28 bg-background relative overflow-hidden">
+    <section className="py-16 sm:py-20 md:py-28 bg-background relative overflow-hidden">
       {/* Decorative Background */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
@@ -17,13 +17,13 @@ export const AboutVideoSection = () => {
           whileInView={{ opacity: 0.015 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[25rem] md:text-[35rem] font-serif text-primary leading-none select-none whitespace-nowrap"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] sm:text-[20rem] md:text-[25rem] lg:text-[35rem] font-serif text-primary leading-none select-none whitespace-nowrap"
         >
           360
         </motion.div>
       </div>
 
-      <div className="container mx-auto px-6 lg:px-12 relative z-10 max-w-6xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10 max-w-6xl">
         
         {/* Section Header */}
         <motion.div
@@ -31,15 +31,15 @@ export const AboutVideoSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
-          <span className="inline-block text-xs tracking-[0.3em] uppercase text-accent font-sans mb-4">
+          <span className="inline-block text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase text-accent font-sans mb-3 sm:mb-4">
             Experience Excellence
           </span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-primary">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-primary">
             Meet Aubrey Hamid
           </h2>
-          <div className="w-20 h-[2px] bg-accent mx-auto mt-6" />
+          <div className="w-16 sm:w-20 h-[2px] bg-accent mx-auto mt-4 sm:mt-6" />
         </motion.div>
 
         {/* Video Container - Centered */}
@@ -48,14 +48,14 @@ export const AboutVideoSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-12 md:mb-16"
+          className="mb-8 sm:mb-12 md:mb-16"
         >
           <div className="relative group max-w-5xl mx-auto">
             {/* Outer Glow */}
             <div className="absolute -inset-1 bg-gradient-to-r from-accent/20 via-gold-light/30 to-accent/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             
             {/* Video Frame */}
-            <div className="relative bg-primary p-1.5 md:p-2 rounded-xl shadow-2xl">
+            <div className="relative bg-primary p-1 sm:p-1.5 md:p-2 rounded-lg sm:rounded-xl shadow-2xl">
               <div className="relative bg-black rounded-lg overflow-hidden">
                 <div className="relative pb-[45%]">
                   {!isPlaying ? (
@@ -72,9 +72,9 @@ export const AboutVideoSection = () => {
                         >
                           <button
                             onClick={() => setIsPlaying(true)}
-                            className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-accent/90 hover:bg-accent flex items-center justify-center backdrop-blur-sm transition-all duration-300 shadow-gold group/btn"
+                            className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-accent/90 hover:bg-accent flex items-center justify-center backdrop-blur-sm transition-all duration-300 shadow-gold group/btn"
                           >
-                            <Play className="w-6 h-6 md:w-8 md:h-8 text-white ml-1" fill="white" />
+                            <Play className="w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white ml-0.5 sm:ml-1" fill="white" />
                           </button>
                         </motion.div>
                       </div>
@@ -113,11 +113,11 @@ export const AboutVideoSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center max-w-3xl mx-auto"
+          className="text-center max-w-3xl mx-auto px-2 sm:px-0"
         >
           {/* Main Description */}
-          <div className="space-y-4 mb-8">
-            <p className="font-sans text-base md:text-lg text-charcoal-light leading-relaxed">
+          <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+            <p className="font-sans text-sm sm:text-base md:text-lg text-charcoal-light leading-relaxed">
               With <span className="text-primary font-medium">35+ years</span> of experience, Aubrey Hamid 
               has helped <span className="text-primary font-medium">1,000+ families</span> find their 
               perfect home in Central Florida. As a licensed REALTOR® and broker, she leads Real Estate 360 
@@ -125,14 +125,14 @@ export const AboutVideoSection = () => {
               sellers, and investors worldwide.
             </p>
             
-            <p className="font-sans text-base md:text-lg text-charcoal-light leading-relaxed">
+            <p className="font-sans text-sm sm:text-base md:text-lg text-charcoal-light leading-relaxed">
               Built on <span className="text-accent font-medium">trust, integrity, and lasting partnerships</span>, 
               we guide you through every step — from first home to investment portfolio.
             </p>
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-3 gap-6 md:gap-10 py-8 border-y border-gray-200 mb-8">
+          <div className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-10 py-6 sm:py-8 border-y border-gray-200 mb-6 sm:mb-8">
             {[
               { value: '35+', label: 'Years Experience' },
               { value: '1,000+', label: 'Families Helped' },
@@ -146,8 +146,8 @@ export const AboutVideoSection = () => {
                 transition={{ delay: 0.5 + index * 0.1 }}
                 className="text-center"
               >
-                <p className="font-serif text-2xl md:text-4xl text-primary">{stat.value}</p>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mt-2">{stat.label}</p>
+                <p className="font-serif text-xl sm:text-2xl md:text-4xl text-primary">{stat.value}</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mt-1 sm:mt-2">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -157,7 +157,7 @@ export const AboutVideoSection = () => {
             <motion.button
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-black text-white px-10 py-4 font-sans text-sm tracking-widest uppercase transition-all duration-300 hover:bg-gray-800 hover:shadow-lg"
+              className="bg-black text-white px-6 sm:px-10 py-3 sm:py-4 font-sans text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 hover:bg-gray-800 hover:shadow-lg"
             >
               Learn More About Us
             </motion.button>
