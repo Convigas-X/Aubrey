@@ -1,11 +1,20 @@
 import type { Property } from '@/data/properties';
 
-// Use proxy in development, direct in production (if configured)
+// Environment detection - production vs development
+const isProduction = typeof window !== 'undefined' && 
+  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') === false;
+
+// Use local proxy in development, Vercel API in production
 const PROXY_URL = import.meta.env.VITE_PROXY_URL || 'http://localhost:3001';
-const DIRECT_URL = import.meta.env.VITE_SPARK_API_URL || 'https://sparkapi.com/v1';
-const SPARK_API_URL = PROXY_URL ? `${PROXY_URL}/api/spark` : DIRECT_URL;
+
+// In production on Vercel, use the serverless function
+// In development, use the local proxy server
+const SPARK_API_URL = isProduction 
+  ? '/api/spark'  // Vercel serverless function
+  : `${PROXY_URL}/api/spark`;  // Local proxy
+
 const SPARK_API_KEY = import.meta.env.VITE_SPARK_API_KEY || '';
-const USE_DEMO = import.meta.env.VITE_USE_DEMO_DATA === 'true';
+const USE_DEMO = import.meta.env.VITE_USE_DEMO_DATA === 'true' || !SPARK_API_KEY;
 
 export class SparkApiService {
   private apiKey: string;
@@ -15,8 +24,15 @@ export class SparkApiService {
     this.apiKey = SPARK_API_KEY;
     this.baseUrl = SPARK_API_URL;
     
+    console.log(`🔧 Spark API: Environment=${isProduction ? 'production' : 'development'}`);
+    console.log(`🔗 Spark API: Base URL=${this.baseUrl}`);
+    
     if (USE_DEMO) {
       console.log('🎮 Spark API: Running in DEMO mode');
+    }
+    
+    if (!this.apiKey) {
+      console.warn('⚠️ Spark API: No API key configured');
     }
   }
 
