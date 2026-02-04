@@ -2,8 +2,6 @@
 # These headers apply to all routes
 
 /*
-  Access-Control-Allow-Origin: https://realestate36.realtor
-  Access-Control-Allow-Origin: https://www.realestate36.realtor
   Access-Control-Allow-Origin: https://realestate360.realtor
   Access-Control-Allow-Origin: https://www.realestate360.realtor
   Access-Control-Allow-Methods: GET, POST, OPTIONS
