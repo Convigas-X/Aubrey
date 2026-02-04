@@ -28,7 +28,7 @@ export const ForbesSection = () => {
               <img 
                 src="/image.png" 
                 alt="Real Estate 360" 
-                className="w-full h-[450px] sm:h-[550px] md:h-[650px] object-cover"
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>

@@ -31,7 +31,9 @@ export const HeroSection = () => {
             {/* Subtitle with decorative line */}
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="h-px w-12 sm:w-16 bg-gradient-to-r from-transparent via-accent to-transparent" />
-              <span className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-accent font-sans">
+              <span className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-accent font-sans"
+                style={{ textShadow: '0 2px 20px rgba(0, 0, 0, 0.8)' }}
+              >
                 Luxury Real Estate
               </span>
               <div className="h-px w-12 sm:w-16 bg-gradient-to-r from-transparent via-accent to-transparent" />
@@ -39,16 +41,16 @@ export const HeroSection = () => {
 
             {/* Main Heading */}
             <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white font-normal tracking-tight leading-tight"
-              style={{ textShadow: '0 4px 30px rgba(0, 0, 0, 0.4)' }}
+              style={{ textShadow: '0 4px 40px rgba(0, 0, 0, 0.9)' }}
             >
-              Orlando & Central Florida's
+              <span className="text-[#FFD700]">Orlando & Central Florida's</span>
               <br />
-              <span className="text-accent">Trusted Real Estate Experts</span>
+              <span className="text-white">Real Estate Experts</span>
             </h1>
 
             {/* Description */}
             <p className="mt-4 sm:mt-6 font-sans text-sm sm:text-base md:text-lg text-white/90 leading-relaxed max-w-2xl mx-auto"
-              style={{ textShadow: '0 2px 20px rgba(0, 0, 0, 0.3)' }}
+              style={{ textShadow: '0 2px 30px rgba(0, 0, 0, 0.8)' }}
             >
               With 35+ years of experience, Real Estate 360 delivers exceptional results 
               for buyers, sellers, and investors throughout Central Florida.
@@ -56,7 +58,7 @@ export const HeroSection = () => {
 
             {/* CTA Heading */}
             <h2 className="font-serif text-lg sm:text-xl md:text-2xl lg:text-3xl text-white font-normal tracking-wide mt-6 sm:mt-8"
-              style={{ textShadow: '0 2px 20px rgba(0, 0, 0, 0.3)' }}
+              style={{ textShadow: '0 2px 30px rgba(0, 0, 0, 0.8)' }}
             >
               Find Your Dream Home
             </h2>
