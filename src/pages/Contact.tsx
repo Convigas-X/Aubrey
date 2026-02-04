@@ -292,14 +292,13 @@ const Contact = () => {
               {/* Premium frame effect */}
               <div className="absolute -inset-1 rounded-xl sm:rounded-2xl bg-gradient-to-r from-gold via-gold-light to-gold opacity-30 blur-sm"></div>
               
-              <div className="relative h-64 sm:h-80 md:h-96 rounded-lg sm:rounded-xl overflow-hidden shadow-2xl border border-gold/20">
+              <div className="relative h-64 sm:h-80 md:h-96 rounded-lg sm:rounded-xl overflow-hidden shadow-2xl border border-gold/20 bg-gray-100">
                 <iframe 
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.202850147928!2d-81.29847668488758!3d28.538383482339053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e768e0c077c5e5%3A0x605931a201592677!2sOrlando%2C%20FL%2032829%2C%20USA!5e0!3m2!1sen!2sus!4v1705791234567!5m2!1sen!2sus"
                   width="100%" 
                   height="100%" 
-                  style={{ border: 0 }} 
+                  style={{ border: 0, filter: 'none' }} 
                   allowFullScreen 
-                  loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Real Estate 360 Orlando Office Location"
                   className="w-full h-full"
