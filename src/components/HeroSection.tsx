@@ -48,11 +48,11 @@ export const HeroSection = () => {
               <span className="text-white">Real Estate Experts</span>
             </h1>
 
-            {/* Description */}
-            <p className="mt-4 sm:mt-6 font-sans text-sm sm:text-base md:text-lg text-white/90 leading-relaxed max-w-2xl mx-auto"
+            {/* Description - Hidden on mobile */}
+            <p className="hidden sm:block mt-4 sm:mt-6 font-sans text-sm sm:text-base md:text-lg text-white/90 leading-relaxed max-w-2xl mx-auto"
               style={{ textShadow: '0 2px 30px rgba(0, 0, 0, 0.8)' }}
             >
-              With 35+ years of experience, Real Estate 360 delivers exceptional results 
+              With 35+ years of experience, Real Estate 360 delivers exceptional results
               for buyers, sellers, and investors throughout Central Florida.
             </p>
 
