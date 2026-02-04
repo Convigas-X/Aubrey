@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent } from '@/components/ui/card';
-import heroImage from '@/assets/hero-mansion.jpg';
+import heroImage from '/herosection.png';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -33,48 +33,23 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-secondary/20">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative h-[45vh] sm:h-[55vh] md:h-[60vh] overflow-hidden">
+      <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={heroImage}
             alt="Real Estate 360 Contact"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-black/50" />
         </div>
         
         <div className="relative z-10 h-full flex items-center justify-center text-center px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="max-w-3xl mx-auto"
-          >
+          <div className="max-w-3xl mx-auto">
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white">
               Contact Us
             </h1>
@@ -82,7 +57,7 @@ const Contact = () => {
             <p className="mt-4 sm:mt-6 font-sans text-base sm:text-lg text-white/90 leading-relaxed">
               Get in touch with our luxury real estate specialists. We're here to help you find your dream property in Orlando, Central Florida and beyond.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -92,30 +67,15 @@ const Contact = () => {
           <div className="grid lg:grid-cols-3 gap-6 sm:gap-10">
             
             {/* Contact Information Card */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="lg:col-span-1"
-            >
+            <div className="lg:col-span-1">
               <Card className="h-full bg-card/80 backdrop-blur-sm border-gold/10 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <CardContent className="p-5 sm:p-8">
-                  <motion.h2 
-                    className="font-serif text-xl sm:text-2xl md:text-3xl text-primary mb-6 sm:mb-8 pb-3 sm:pb-4 border-b border-gold/20"
-                    variants={itemVariants}
-                    initial="hidden"
-                    animate="visible"
-                  >
+                  <h2 className="font-serif text-xl sm:text-2xl md:text-3xl text-primary mb-6 sm:mb-8 pb-3 sm:pb-4 border-b border-gold/20">
                     Get In Touch
                     <div className="w-12 sm:w-16 h-0.5 bg-gold mt-2 sm:mt-3"></div>
-                  </motion.h2>
+                  </h2>
 
-                  <motion.div 
-                    className="space-y-5 sm:space-y-8"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                  >
+                  <div className="space-y-5 sm:space-y-8">
                     {[
                       {
                         icon: MapPin,
@@ -163,10 +123,9 @@ const Contact = () => {
                         ),
                       },
                     ].map((item, index) => (
-                      <motion.div 
+                      <div 
                         key={index} 
                         className="flex items-start gap-3 sm:gap-4 group"
-                        variants={itemVariants}
                       >
                         <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0 group-hover:bg-gold/20 transition-colors duration-300">
                           <item.icon className="w-4 h-4 sm:w-5 sm:h-5 text-gold" />
@@ -177,31 +136,21 @@ const Contact = () => {
                             {item.content}
                           </p>
                         </div>
-                      </motion.div>
+                      </div>
                     ))}
-                  </motion.div>
+                  </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
             {/* Contact Form Card */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="lg:col-span-2"
-            >
+            <div className="lg:col-span-2">
               <Card className="h-full bg-card/80 backdrop-blur-sm border-gold/10 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <CardContent className="p-5 sm:p-8">
-                  <motion.h2 
-                    className="font-serif text-xl sm:text-2xl md:text-3xl text-primary mb-6 sm:mb-8 pb-3 sm:pb-4 border-b border-gold/20"
-                    variants={itemVariants}
-                    initial="hidden"
-                    animate="visible"
-                  >
+                  <h2 className="font-serif text-xl sm:text-2xl md:text-3xl text-primary mb-6 sm:mb-8 pb-3 sm:pb-4 border-b border-gold/20">
                     Send Us a Message
                     <div className="w-12 sm:w-16 h-0.5 bg-gold mt-2 sm:mt-3"></div>
-                  </motion.h2>
+                  </h2>
 
                   {isSubmitted && (
                     <motion.div
@@ -215,14 +164,11 @@ const Contact = () => {
                     </motion.div>
                   )}
 
-                  <motion.form 
+                  <form 
                     onSubmit={handleSubmit} 
                     className="space-y-4 sm:space-y-6"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
                   >
-                    <motion.div variants={itemVariants}>
+                    <div>
                       <label htmlFor="name" className="block font-sans text-xs sm:text-sm font-medium text-charcoal-light mb-1.5 sm:mb-2">
                         Full Name *
                       </label>
@@ -236,10 +182,10 @@ const Contact = () => {
                         required
                         placeholder="Enter your full name"
                       />
-                    </motion.div>
+                    </div>
 
                     <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-                      <motion.div variants={itemVariants}>
+                      <div>
                         <label htmlFor="email" className="block font-sans text-xs sm:text-sm font-medium text-charcoal-light mb-1.5 sm:mb-2">
                           Email Address *
                         </label>
@@ -253,8 +199,8 @@ const Contact = () => {
                           required
                           placeholder="your.email@example.com"
                         />
-                      </motion.div>
-                      <motion.div variants={itemVariants}>
+                      </div>
+                      <div>
                         <label htmlFor="phone" className="block font-sans text-xs sm:text-sm font-medium text-charcoal-light mb-1.5 sm:mb-2">
                           Phone Number
                         </label>
@@ -267,10 +213,10 @@ const Contact = () => {
                           className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-border bg-background font-sans text-primary focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all duration-200 h-10 sm:h-12"
                           placeholder="(123) 456-7890"
                         />
-                      </motion.div>
+                      </div>
                     </div>
 
-                    <motion.div variants={itemVariants}>
+                    <div>
                       <label htmlFor="interest" className="block font-sans text-xs sm:text-sm font-medium text-charcoal-light mb-1.5 sm:mb-2">
                         I'm Interested In
                       </label>
@@ -289,9 +235,9 @@ const Contact = () => {
                           <SelectItem value="other">Other</SelectItem>
                         </SelectContent>
                       </Select>
-                    </motion.div>
+                    </div>
 
-                    <motion.div variants={itemVariants}>
+                    <div>
                       <label htmlFor="message" className="block font-sans text-xs sm:text-sm font-medium text-charcoal-light mb-1.5 sm:mb-2">
                         Message *
                       </label>
@@ -305,9 +251,9 @@ const Contact = () => {
                         required
                         placeholder="Tell us about your real estate needs..."
                       />
-                    </motion.div>
+                    </div>
 
-                    <motion.div variants={itemVariants} className="pt-1 sm:pt-2">
+                    <div className="pt-1 sm:pt-2">
                       <Button 
                         type="submit" 
                         className="bg-gradient-to-r from-gold to-gold-dark text-primary-foreground px-6 sm:px-8 py-3 sm:py-4 font-sans text-xs sm:text-sm font-semibold tracking-wide uppercase transition-all duration-300 hover:from-gold-dark hover:to-gold hover:shadow-lg hover:-translate-y-0.5 w-full sm:w-auto"
@@ -315,29 +261,23 @@ const Contact = () => {
                         <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2" />
                         Send Message
                       </Button>
-                    </motion.div>
-                  </motion.form>
+                    </div>
+                  </form>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Premium Map Section - Above Footer */}
-      <section className="relative py-12 sm:py-16 md:py-24 bg-primary">
+      <section className="relative py-12 sm:py-16 md:py-24 bg-[#2a2a2a]">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-transparent"></div>
         <div className="absolute -left-1/4 -bottom-1/4 w-full h-full rounded-full bg-gold/5 blur-3xl"></div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-8 sm:mb-12 md:mb-16"
-          >
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white">
               Visit Our Orlando Office
             </h2>
@@ -345,15 +285,9 @@ const Contact = () => {
             <p className="mt-4 sm:mt-6 font-sans text-sm sm:text-lg text-white/80 max-w-2xl mx-auto">
               Conveniently located in Orlando, FL. Schedule an appointment or drop by during business hours.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-5xl mx-auto"
-          >
+          <div className="max-w-5xl mx-auto">
             <div className="relative">
               {/* Premium frame effect */}
               <div className="absolute -inset-1 rounded-xl sm:rounded-2xl bg-gradient-to-r from-gold via-gold-light to-gold opacity-30 blur-sm"></div>
@@ -373,12 +307,7 @@ const Contact = () => {
               </div>
 
               {/* Map Location Pin - Premium Design */}
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3, type: "spring", stiffness: 100 }}
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                 style={{ marginTop: '-40px' }}
               >
                 {/* Pin container */}
@@ -395,12 +324,7 @@ const Contact = () => {
                   <div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gradient-to-b from-gold to-gold-dark hidden sm:block"></div>
                   
                   {/* Location info card - mobile responsive */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.8 }}
-                    className="absolute bottom-14 sm:bottom-20 left-1/2 -translate-x-1/2 bg-primary/95 backdrop-blur-sm border border-gold/30 rounded-lg sm:rounded-xl p-2.5 sm:p-5 shadow-2xl w-max max-w-[90vw] sm:max-w-xs md:max-w-sm"
+                  <div className="absolute bottom-14 sm:bottom-20 left-1/2 -translate-x-1/2 bg-primary/95 backdrop-blur-sm border border-gold/30 rounded-lg sm:rounded-xl p-2.5 sm:p-5 shadow-2xl w-max max-w-[90vw] sm:max-w-xs md:max-w-sm"
                   >
                     <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-primary/95 border-r border-b border-gold/30 rotate-45"></div>
                     
@@ -417,37 +341,25 @@ const Contact = () => {
                         </p>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Premium badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="absolute top-2 sm:top-6 right-2 sm:right-6 bg-gradient-to-r from-gold to-gold-dark text-primary px-2 sm:px-4 py-1 sm:py-2 rounded-md sm:rounded-lg font-sans font-semibold text-[10px] sm:text-xs shadow-lg whitespace-nowrap"
-              >
+              <div className="absolute top-2 sm:top-6 right-2 sm:right-6 bg-gradient-to-r from-gold to-gold-dark text-primary px-2 sm:px-4 py-1 sm:py-2 rounded-md sm:rounded-lg font-sans font-semibold text-[10px] sm:text-xs shadow-lg whitespace-nowrap">
                 Prestige Location
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Additional Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-8 sm:mt-12 text-center"
-          >
+          <div className="mt-8 sm:mt-12 text-center">
             <p className="font-sans text-white/70 text-xs sm:text-sm">
               <span className="font-semibold text-gold">Directions:</span> 
               Located in the heart of Orlando, easily accessible from major highways. 
               Free parking available on-site.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 

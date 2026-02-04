@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Instagram, Linkedin, Facebook, Mail, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -31,18 +30,14 @@ const socialLinks = [
 
 export const Footer = () => {
   return (
-    <footer className="bg-primary text-white">
+    <footer className="bg-[#1a1a1a] text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-12 pt-12 sm:pt-16 md:pt-20 pb-8">
         
         {/* Top Section - 4 Columns on desktop, 2 on tablet, 1 on mobile */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8">
           
           {/* Brand & Contact */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="text-center sm:text-left"
           >
             <Link to="/" className="inline-block">
@@ -68,14 +63,10 @@ export const Footer = () => {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Company Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+          <div
             className="text-center sm:text-left"
           >
             <h4 className="font-sans text-xs tracking-[0.2em] uppercase text-white/50 mb-5 font-medium">
@@ -93,14 +84,10 @@ export const Footer = () => {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
           {/* Properties Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+          <div
             className="text-center sm:text-left"
           >
             <h4 className="font-sans text-xs tracking-[0.2em] uppercase text-white/50 mb-5 font-medium">
@@ -118,14 +105,10 @@ export const Footer = () => {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
           {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+          <div
             className="text-center sm:text-left"
           >
             <h4 className="font-sans text-xs tracking-[0.2em] uppercase text-white/50 mb-5 font-medium">
@@ -157,15 +140,11 @@ export const Footer = () => {
                 </a>
               </li>
             </ul>
-          </motion.div>
+          </div>
         </div>
 
         {/* Agent Profile Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+        <div
           className="mt-10 sm:mt-12 py-6 sm:py-8 border-t border-b border-white/10"
         >
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
@@ -193,7 +172,7 @@ export const Footer = () => {
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Bottom Bar */}
         <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 text-center sm:text-left">

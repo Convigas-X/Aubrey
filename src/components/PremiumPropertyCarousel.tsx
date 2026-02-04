@@ -81,9 +81,9 @@ export const PremiumPropertyCarousel = ({
         <AnimatePresence mode="wait" custom={currentIndex}>
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
+            initial={{ x: 100 }}
+            animate={{ x: 0 }}
+            exit={{ x: -100 }}
             transition={{
               type: "spring",
               stiffness: 300,
@@ -113,31 +113,19 @@ export const PremiumPropertyCarousel = ({
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 lg:p-12 text-white z-10">
                 <div className="max-w-4xl">
                   {/* Property Name */}
-                  <motion.h2
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.2, type: "spring" }}
-                    className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-3 drop-shadow-lg"
+                  <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-3 drop-shadow-lg"
                   >
                     {properties[currentIndex].name}
-                  </motion.h2>
+                  </h2>
                   
                   {/* Address */}
-                  <motion.p
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.3, type: "spring" }}
-                    className="font-sans text-lg md:text-xl text-white/90 mb-6"
+                  <p className="font-sans text-lg md:text-xl text-white/90 mb-6"
                   >
                     {properties[currentIndex].address}
-                  </motion.p>
+                  </p>
                   
                   {/* Property Specs */}
-                  <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.4, type: "spring" }}
-                    className="flex flex-wrap items-center gap-6 mb-6"
+                  <div className="flex flex-wrap items-center gap-6 mb-6"
                   >
                     <div className="flex items-center gap-3">
                       <Bed className="w-5 h-5 text-accent" />
@@ -157,29 +145,21 @@ export const PremiumPropertyCarousel = ({
                         <span className="font-bold">{properties[currentIndex].sqft.toLocaleString()}</span> Sq.Ft.
                       </span>
                     </div>
-                  </motion.div>
+                  </div>
                   
                   {/* Price */}
-                  <motion.p
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.5, type: "spring" }}
-                    className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-accent drop-shadow-xl"
+                  <p className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-accent drop-shadow-xl"
                   >
                     {properties[currentIndex].price}
-                  </motion.p>
+                  </p>
                   
                   {/* View Details Button */}
-                  <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.6, type: "spring" }}
-                    className="mt-8"
+                  <div className="mt-8"
                   >
                     <button className="btn-gold">
                       View Property Details
                     </button>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -202,7 +182,7 @@ export const PremiumPropertyCarousel = ({
         {/* Page Indicators */}
         <div className="flex gap-2">
           {properties.map((_, index) => (
-            <motion.button
+            <button
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`h-2 rounded-full transition-all ${
@@ -210,9 +190,6 @@ export const PremiumPropertyCarousel = ({
                   ? 'bg-accent w-8'
                   : 'bg-muted-foreground/30 w-2 hover:bg-muted-foreground/50'
               }`}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.8 }}
-              transition={{ duration: 0.2 }}
               aria-label={`Go to property ${index + 1}`}
             />
           ))}

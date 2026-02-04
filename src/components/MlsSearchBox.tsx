@@ -27,12 +27,7 @@ export const MlsSearchBox = () => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.4 }}
-      className="w-full max-w-4xl mx-auto"
-    >
+    <div className="w-full max-w-4xl mx-auto">
       <form onSubmit={handleSearch} className="bg-white/10 backdrop-blur-xl rounded-lg p-3 sm:p-4 md:p-6 border border-white/20">
         {/* Main Search Row - Stacked on mobile, horizontal on desktop */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-2 sm:gap-3">
@@ -130,14 +125,12 @@ export const MlsSearchBox = () => {
 
           {/* Search Button */}
           <div className="sm:col-span-1 lg:col-span-1">
-            <motion.button
+            <button
               type="submit"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
               className="w-full h-[46px] bg-accent hover:bg-gold-light text-white rounded flex items-center justify-center transition-colors duration-300"
             >
               <Search className="w-5 h-5" />
-            </motion.button>
+            </button>
           </div>
         </div>
 
@@ -147,6 +140,6 @@ export const MlsSearchBox = () => {
           <span>Search Central Florida MLS Listings</span>
         </div>
       </form>
-    </motion.div>
+    </div>
   );
 };

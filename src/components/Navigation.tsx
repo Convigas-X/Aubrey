@@ -26,10 +26,7 @@ export const Navigation = () => {
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+      <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled ? 'nav-blur py-4' : 'nav-transparent py-6'
         }`}
@@ -76,15 +73,15 @@ export const Navigation = () => {
             </button>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ y: '-100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '-100%' }}
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-50 bg-primary"
           >
@@ -101,12 +98,9 @@ export const Navigation = () => {
               </div>
 
               <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-8">
-                {navLinks.map((link, index) => (
-                  <motion.div
+                {navLinks.map((link) => (
+                  <div
                     key={link.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 + 0.2 }}
                   >
                     <Link
                       to={link.href}
@@ -115,7 +109,7 @@ export const Navigation = () => {
                     >
                       {link.name}
                     </Link>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>

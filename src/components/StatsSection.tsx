@@ -1,4 +1,4 @@
-import { motion, useInView } from 'framer-motion';
+import { useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 
 // Hook for counting animation
@@ -59,7 +59,7 @@ const StatCounter = ({ value, duration = 2000, delay = 0 }: { value: string; dur
     return result;
   };
 
-  return <motion.span ref={ref} className="inline-block">{displayValue()}</motion.span>;
+  return <span ref={ref} className="inline-block">{displayValue()}</span>;
 };
 
 // Range Counter Component
@@ -126,9 +126,9 @@ const RangeCounter = ({ startValue, endValue, duration = 2000, delay = 0 }: {
         <>{startValue} - {endValue}</>
       ) : (
         <>
-          <motion.span ref={startRef}>{formatValue(startCount, startPrefix, startSuffix)}</motion.span>
+          <span ref={startRef}>{formatValue(startCount, startPrefix, startSuffix)}</span>
           {' - '}
-          <motion.span ref={endRef}>{formatValue(endCount, endPrefix, endSuffix)}</motion.span>
+          <span ref={endRef}>{formatValue(endCount, endPrefix, endSuffix)}</span>
         </>
       )}
     </span>
@@ -141,11 +141,7 @@ export const StatsSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-6 max-w-7xl mx-auto">
           {/* Total Sales Volume */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: 0 }}
+          <div
             className="text-center"
           >
             <div className="stat-number text-primary text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
@@ -154,14 +150,10 @@ export const StatsSection = () => {
             <p className="mt-2 sm:mt-3 font-sans text-[10px] sm:text-xs md:text-base tracking-[0.05em] sm:tracking-[0.1em] uppercase text-muted-foreground">
               Total Sales Volume
             </p>
-          </motion.div>
+          </div>
 
           {/* Homes Sold */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: 0 }}
+          <div
             className="text-center"
           >
             <div className="stat-number text-primary text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
@@ -170,14 +162,10 @@ export const StatsSection = () => {
             <p className="mt-2 sm:mt-3 font-sans text-[10px] sm:text-xs md:text-base tracking-[0.05em] sm:tracking-[0.1em] uppercase text-muted-foreground">
               Homes Sold
             </p>
-          </motion.div>
+          </div>
 
           {/* Price-Range - Now Animated! */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: 0 }}
+          <div
             className="text-center"
           >
             <div className="stat-number text-primary text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
@@ -186,14 +174,10 @@ export const StatsSection = () => {
             <p className="mt-2 sm:mt-3 font-sans text-[10px] sm:text-xs md:text-base tracking-[0.05em] sm:tracking-[0.1em] uppercase text-muted-foreground">
               Price-Range
             </p>
-          </motion.div>
+          </div>
 
           {/* Average Price Point */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: 0 }}
+          <div
             className="text-center"
           >
             <div className="stat-number text-primary text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
@@ -202,7 +186,7 @@ export const StatsSection = () => {
             <p className="mt-2 sm:mt-3 font-sans text-[10px] sm:text-xs md:text-base tracking-[0.05em] sm:tracking-[0.1em] uppercase text-muted-foreground">
               Average Price Point
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

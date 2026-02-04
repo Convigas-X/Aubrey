@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 export const ForbesSection = () => {
@@ -6,11 +5,7 @@ export const ForbesSection = () => {
     <section className="py-10 sm:py-12 md:py-20 bg-cream">
       <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+          <div
           >
             <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl text-primary">
               Full-Service Brokerage Built on Trust, Intelligence & Innovation
@@ -20,34 +15,26 @@ export const ForbesSection = () => {
               From first-time buyers to luxury estates, we provide personalized service 
               and expert guidance every step of the way.
             </p>
-          </motion.div>
+          </div>
         </div>
         
         {/* New Two Column Section */}
         <div className="grid md:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 mt-10 sm:mt-16 md:mt-20 items-center">
           {/* Left Side - Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+          <div
             className="order-2 md:order-1"
           >
-            <div className="relative overflow-hidden rounded-lg shadow-lg">
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img 
-                src="/imgage.png" 
+                src="/image.png" 
                 alt="Real Estate 360" 
-                className="w-full h-auto object-cover"
+                className="w-full h-[450px] sm:h-[550px] md:h-[650px] object-cover"
               />
             </div>
-          </motion.div>
+          </div>
           
           {/* Right Side - Content with Button */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+          <div
             className="order-1 md:order-2"
           >
             <div className="text-left">
@@ -68,7 +55,7 @@ export const ForbesSection = () => {
                 </Link>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

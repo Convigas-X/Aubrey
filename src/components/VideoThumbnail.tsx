@@ -1,5 +1,3 @@
-import { motion } from 'framer-motion';
-
 interface VideoThumbnailProps {
   onClick: () => void;
 }
@@ -28,39 +26,28 @@ export const VideoThumbnail = ({ onClick }: VideoThumbnailProps) => {
       <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
         
         {/* Real Estate 360 */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="text-center"
-        >
+        <div className="text-center">
           <h2 
             className="font-serif text-white text-3xl md:text-4xl font-medium tracking-tight"
             style={{ textShadow: '0 4px 20px rgba(0,0,0,0.9)' }}
           >
             Real Estate
           </h2>
-          <motion.span
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5 }}
+          <span
             className="font-serif text-[#d4af37] text-5xl md:text-6xl font-bold block"
             style={{ textShadow: '0 4px 20px rgba(0,0,0,0.9)' }}
           >
             360
-          </motion.span>
-        </motion.div>
+          </span>
+        </div>
 
         {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
+        <p
           className="mt-3 text-white/70 text-xs tracking-[0.2em] uppercase font-sans"
           style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}
         >
           Orlando & Central Florida
-        </motion.p>
+        </p>
       </div>
 
       {/* Duration Badge - YouTube Style */}

@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { PropertyCard } from '@/components/PropertyCard';
 import { sparkApi } from '@/services/sparkApi';
 import { Property } from '@/data/properties';
-import heroImage from '@/assets/hero-mansion.jpg';
+import heroImage from '/herosection.png';
 import { Loader2, Search, MapPin, X } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -84,29 +83,25 @@ const Listings = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative h-[40vh] sm:h-[50vh] overflow-hidden">
+      <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={heroImage}
             alt="Real Estate 360 Properties"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-black/50" />
         </div>
         
         <div className="relative z-10 h-full flex items-center justify-center text-center px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <div>
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white">
               Property Listings
             </h1>
             <p className="mt-3 sm:mt-4 font-sans text-base sm:text-lg text-white/80 max-w-2xl mx-auto px-2 sm:px-0">
               Explore our curated collection of available properties in Orlando & Central Florida
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -116,11 +111,7 @@ const Listings = () => {
           
           {/* Active Search Filters */}
           {activeFiltersList.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-6 sm:mb-8 p-3 sm:p-4 bg-accent/5 border border-accent/20 rounded-lg"
-            >
+            <div className="mb-6 sm:mb-8 p-3 sm:p-4 bg-accent/5 border border-accent/20 rounded-lg">
               <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="flex items-center gap-1.5 sm:gap-2 text-accent">
                   <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -142,17 +133,11 @@ const Listings = () => {
                   Clear Filters
                 </button>
               </div>
-            </motion.div>
+            </div>
           )}
 
           {/* Filter Tabs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex justify-center mb-8 sm:mb-12 gap-4 sm:gap-8"
-          >
+          <div className="flex justify-center mb-8 sm:mb-12 gap-4 sm:gap-8">
             {[
               { id: 'all', label: 'All Properties' },
               { id: 'sale', label: 'For Sale' },
@@ -170,7 +155,7 @@ const Listings = () => {
                 {filter.label}
               </button>
             ))}
-          </motion.div>
+          </div>
 
           {/* Loading State */}
           {loading && (
@@ -184,11 +169,7 @@ const Listings = () => {
 
           {/* Error State */}
           {!loading && error && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-20"
-            >
+            <div className="text-center py-20">
               <p className="font-sans text-lg text-destructive mb-4">{error}</p>
               <button
                 onClick={fetchProperties}
@@ -196,7 +177,7 @@ const Listings = () => {
               >
                 Try Again
               </button>
-            </motion.div>
+            </div>
           )}
 
           {/* Properties Grid */}
@@ -213,11 +194,7 @@ const Listings = () => {
               </div>
 
               {filteredProperties.length === 0 && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="text-center py-16 sm:py-20"
-                >
+                <div className="text-center py-16 sm:py-20">
                   <div className="w-12 h-12 sm:w-16 sm:h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
                     <MapPin className="w-6 h-6 sm:w-8 sm:h-8 text-muted-foreground" />
                   </div>
@@ -227,7 +204,7 @@ const Listings = () => {
                   <p className="font-sans text-xs sm:text-sm text-muted-foreground">
                     Try adjusting your search filters
                   </p>
-                </motion.div>
+                </div>
               )}
             </>
           )}

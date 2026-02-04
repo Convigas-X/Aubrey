@@ -129,9 +129,7 @@ export const Carousel = ({
             className="absolute left-4 top-1/2 -translate-y-1/2 z-10"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isHovered ? 1 : 0 }}
-            transition={{ opacity: { duration: 0.2 } }}
+            style={{ opacity: isHovered ? 1 : 0 }}
           >
             <div
               className={`p-3 rounded-full bg-white/80 backdrop-blur-sm shadow-lg transition-colors ${
@@ -151,9 +149,7 @@ export const Carousel = ({
             className="absolute right-4 top-1/2 -translate-y-1/2 z-10"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isHovered ? 1 : 0 }}
-            transition={{ opacity: { duration: 0.2 } }}
+            style={{ opacity: isHovered ? 1 : 0 }}
           >
             <div
               className={`p-3 rounded-full bg-white/80 backdrop-blur-sm shadow-lg transition-colors ${

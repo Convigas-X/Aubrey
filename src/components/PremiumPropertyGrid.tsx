@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Bed, Bath, Square } from 'lucide-react';
 
 interface Property {
@@ -56,19 +55,9 @@ export const PremiumPropertyGrid = ({ properties }: PremiumPropertyGridProps) =>
             if (!hollywood) return null;
             
             return (
-              <motion.div
+              <div
                 key={`combined-${siena.id}-${hollywood.id}`}
                 className={`relative group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-2xl transition-all duration-500 ${getCardSize(index)}`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.08,
-                  type: "spring",
-                  stiffness: 100,
-                }}
-                whileHover={{ scale: 1.01 }}
               >
                 {/* Mobile: Stack properties vertically, Desktop: side by side split */}
                 <div className="absolute inset-0 flex flex-col sm:flex-col">
@@ -151,26 +140,16 @@ export const PremiumPropertyGrid = ({ properties }: PremiumPropertyGridProps) =>
                 
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
-              </motion.div>
+              </div>
             );
           }
           
           // Regular single property cards (Bel Air, Beverly Park)
           // Special styling for Chateau to ensure full image display
           return (
-            <motion.div
+            <div
               key={property.id}
               className={`relative group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-500 ${getCardSize(index, property.id)}`}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.08,
-                type: "spring",
-                stiffness: 100,
-              }}
-              whileHover={{ scale: 1.01 }}
             >
               {/* Property Image - Full height for ultra-wide cards */}
               <div className={`absolute inset-0 bg-muted ${
@@ -241,7 +220,7 @@ export const PremiumPropertyGrid = ({ properties }: PremiumPropertyGridProps) =>
               
               {/* Hover Overlay - Very subtle */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
-            </motion.div>
+            </div>
           );
         })}
       </div>

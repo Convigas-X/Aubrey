@@ -1,9 +1,8 @@
-import { motion } from 'framer-motion';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { Mail, Phone, Award, Target, Users, Shield, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import heroImage from '@/assets/hero-mansion.jpg';
+import heroImage from '/herosection.png';
 
 const teamMembers = [
   {
@@ -42,42 +41,32 @@ const Team = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative h-[45vh] sm:h-[55vh] md:h-[60vh] overflow-hidden">
+      <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={heroImage}
             alt="Real Estate 360 Team"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-black/50" />
         </div>
         
         <div className="relative z-10 h-full flex items-center justify-center text-center px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <div>
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white">
               Our Team
             </h1>
             <p className="mt-3 sm:mt-4 font-sans text-base sm:text-lg text-white/80 max-w-2xl mx-auto">
               Meet the dedicated professionals behind our success.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Company Statement Section */}
       <section className="py-12 sm:py-20 bg-cream">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
-          >
+          <div className="max-w-4xl mx-auto text-center">
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-primary mb-4 sm:mb-6">
               A Legacy of Excellence
             </h2>
@@ -87,46 +76,28 @@ const Team = () => {
               receives the personalized attention they deserve. We believe that successful real estate transactions are built 
               on trust, transparency, and unwavering commitment to our clients' success.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Team Stats Section */}
-      <section className="py-10 sm:py-16 bg-primary">
+      <section className="py-10 sm:py-16 bg-[#2a2a2a]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 text-center"
-          >
-            {companyStats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 text-center">
+            {companyStats.map((stat) => (
+              <div key={stat.label}>
                 <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-gold mb-1 sm:mb-2">{stat.number}</h3>
                 <p className="font-sans text-[10px] sm:text-sm text-white/80 tracking-wider uppercase">{stat.label}</p>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Core Values Section */}
       <section className="py-12 sm:py-20 bg-secondary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-10 sm:mb-16"
-          >
+          <div className="text-center mb-10 sm:mb-16">
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-primary mb-4 sm:mb-6">
               Our Core Values
             </h2>
@@ -134,20 +105,16 @@ const Team = () => {
               Every member of our team embodies these principles in every interaction, 
               ensuring you receive exceptional service at every step.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 max-w-5xl mx-auto">
             {[
               { icon: Shield, title: 'Integrity First', desc: 'Honesty and transparency guide every decision we make.' },
               { icon: Target, title: 'Excellence Always', desc: 'We strive for perfection in every transaction.' },
               { icon: Users, title: 'Client-Centered', desc: 'Your goals are our top priority.' },
-            ].map((value, index) => (
-              <motion.div
+            ].map((value) => (
+              <div
                 key={value.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="text-center bg-white/70 backdrop-blur-sm rounded-xl p-6 sm:p-8 shadow-lg border border-gold/10 hover:shadow-xl transition-shadow duration-300"
               >
                 <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6 rounded-full bg-gold/10 flex items-center justify-center">
@@ -155,7 +122,7 @@ const Team = () => {
                 </div>
                 <h3 className="font-serif text-lg sm:text-xl text-primary mb-2 sm:mb-3">{value.title}</h3>
                 <p className="font-sans text-sm sm:text-base text-charcoal-light leading-relaxed">{value.desc}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -164,13 +131,7 @@ const Team = () => {
       {/* Enhanced Team Grid */}
       <section className="py-12 sm:py-20 lg:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-10 sm:mb-16"
-          >
+          <div className="text-center mb-10 sm:mb-16">
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-primary mb-4 sm:mb-6">
               Meet Our Team
             </h2>
@@ -178,16 +139,12 @@ const Team = () => {
               Each member brings unique expertise and passion to deliver exceptional results 
               for our clients across Orlando and beyond.
             </p>
-          </motion.div>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-10">
-            {teamMembers.map((member, index) => (
-              <motion.div
+            {teamMembers.map((member) => (
+              <div
                 key={member.name}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: index * 0.15 }}
                 className="group bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
               >
                 <div className="relative overflow-hidden">
@@ -240,22 +197,16 @@ const Team = () => {
                     </a>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-12 sm:py-20 bg-primary">
+      <section className="py-12 sm:py-20 bg-[#2a2a2a]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
-          >
+          <div className="text-center max-w-3xl mx-auto">
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-4 sm:mb-6">
               Ready to Work Together?
             </h2>
@@ -277,7 +228,7 @@ const Team = () => {
                 View Properties
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

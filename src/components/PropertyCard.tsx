@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Bed, Bath, Square } from 'lucide-react';
 import type { Property } from '@/data/properties';
 
@@ -19,11 +18,7 @@ export const PropertyCard = ({
   variant = 'default',
 }: PropertyCardProps) => {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+    <article
       className="property-card group cursor-pointer"
     >
       {/* Image Container */}
@@ -79,6 +74,6 @@ export const PropertyCard = ({
           {price}
         </p>
       </div>
-    </motion.article>
+    </article>
   );
 };

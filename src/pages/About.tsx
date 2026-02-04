@@ -1,7 +1,6 @@
-import { motion } from 'framer-motion';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
-import heroImage from '@/assets/hero-mansion.jpg';
+import heroImage from '/herosection.png';
 import { Award, Users, Target, Heart } from 'lucide-react';
 
 const values = [
@@ -17,22 +16,18 @@ const About = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative h-[45vh] sm:h-[55vh] md:h-[60vh] overflow-hidden">
+      <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={heroImage}
             alt="RealEstate 360"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-black/50" />
         </div>
         
         <div className="relative z-10 h-full flex items-center justify-center text-center px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <div>
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white">
               About Real Estate 360
             </h1>
@@ -40,32 +35,21 @@ const About = () => {
               Our mission is to provide exceptional real estate services with integrity, 
               expertise, and a commitment to exceeding expectations.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Excellence Section - New Section Added Below Hero */}
       <section className="py-10 sm:py-12 md:py-20" style={{ backgroundColor: '#fefefe' }}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-6 sm:mb-8"
-          >
+          <div className="text-center mb-6 sm:mb-8">
                           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-primary">
                           35+ Years of Excellence, Innovation & Trust            </h2>
-          </motion.div>
+          </div>
           
           <div className="grid md:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             {/* Left Side - Image */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
+            <div>
               <div className="relative overflow-hidden rounded-lg">
                 <img 
                   src="/abot.jpeg" 
@@ -73,15 +57,10 @@ const About = () => {
                   className="w-full h-auto object-cover"
                 />
               </div>
-            </motion.div>
+            </div>
             
             {/* Right Side - Text */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
+            <div>
               <p className="font-sans text-sm sm:text-lg text-charcoal-light leading-relaxed">
                 Real Estate 360 was built on a foundation of integrity, expertise, and forward-thinking strategies. For more than three decades, we've helped thousands of clients build wealth, secure homes, and seize high-value investment opportunities.
               </p>
@@ -93,7 +72,7 @@ const About = () => {
               <p className="font-sans text-sm sm:text-lg text-charcoal-light leading-relaxed mt-4 sm:mt-6">
                 We serve clients across Orlando, Central Florida, and nationwide as well as international investors searching for unique U.S. opportunities.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -102,24 +81,13 @@ const About = () => {
       <section className="py-10 sm:py-12 md:py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
+            <div>
               <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-primary">
                 Our Story
               </h2>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-4 sm:mt-6 space-y-4 sm:space-y-6 text-left"
-            >
+            <div className="mt-4 sm:mt-6 space-y-4 sm:space-y-6 text-left">
               <p className="font-sans text-sm sm:text-lg text-charcoal-light leading-relaxed">
                 For over 35 years, Real Estate 360 has been Central Florida's trusted 
                 partner in residential real estate. Founded in 1989 by Aubrey Hamid, 
@@ -135,7 +103,7 @@ const About = () => {
                 touch that has made us a leader in Orlando real estate. Our clients aren't 
                 just transactions—they're neighbors, friends, and the foundation of our success.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -143,26 +111,16 @@ const About = () => {
       {/* Mission & Values Section */}
       <section className="py-10 sm:py-12 md:py-20 bg-secondary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-6 sm:mb-8"
-          >
+          <div className="text-center mb-6 sm:mb-8">
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-primary">
               Our Mission & Values
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
-            {values.map((value, index) => (
-              <motion.div
+            {values.map((value) => (
+              <div
                 key={value.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center"
               >
                 <div className="w-16 h-16 sm:w-24 sm:h-24 mx-auto bg-cream rounded-full mb-4 sm:mb-6 flex items-center justify-center">
@@ -172,7 +130,7 @@ const About = () => {
                 <p className="mt-1 sm:mt-2 font-sans text-xs sm:text-base text-muted-foreground leading-relaxed">
                   {value.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

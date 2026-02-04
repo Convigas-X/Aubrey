@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { PremiumPropertyGrid } from './PremiumPropertyGrid';
 import property1 from '@/assets/property-1.jpg';
 import property2 from '@/assets/property-2.jpg';
@@ -70,11 +69,7 @@ export const FeaturedListings = () => {
     <section className="py-12 sm:py-16 md:py-24 bg-secondary">
       <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+        <div
           className="text-center mb-10 sm:mb-16 md:mb-20"
         >
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-primary tracking-tight">
@@ -83,7 +78,7 @@ export const FeaturedListings = () => {
           <p className="mt-3 sm:mt-4 md:mt-6 font-sans text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Discover exceptional homes in Orlando's most desirable neighborhoods
           </p>
-        </motion.div>
+        </div>
 
         {/* Premium Grid - All Properties at Once with Different Sizes
             Status updates: Bel Air, Beverly Park, Chateau Lumière are now SOLD */}

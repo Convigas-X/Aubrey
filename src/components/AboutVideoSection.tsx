@@ -12,25 +12,17 @@ export const AboutVideoSection = () => {
     <section className="py-16 sm:py-20 md:py-28 bg-background relative overflow-hidden">
       {/* Decorative Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.015 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] sm:text-[20rem] md:text-[25rem] lg:text-[35rem] font-serif text-primary leading-none select-none whitespace-nowrap"
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] sm:text-[20rem] md:text-[25rem] lg:text-[35rem] font-serif text-primary leading-none select-none whitespace-nowrap opacity-[0.015]"
         >
           360
-        </motion.div>
+        </div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10 max-w-6xl">
         
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <div
           className="text-center mb-8 sm:mb-12"
         >
           <span className="inline-block text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase text-accent font-sans mb-3 sm:mb-4">
@@ -40,14 +32,10 @@ export const AboutVideoSection = () => {
             Meet Aubrey Hamid
           </h2>
           <div className="w-16 sm:w-20 h-[2px] bg-accent mx-auto mt-4 sm:mt-6" />
-        </motion.div>
+        </div>
 
         {/* Video Container - Centered */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+        <div
           className="mb-8 sm:mb-12 md:mb-16"
         >
           <div className="relative group max-w-5xl mx-auto">
@@ -105,14 +93,10 @@ export const AboutVideoSection = () => {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Content Below Video */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+        <div
           className="text-center max-w-3xl mx-auto px-2 sm:px-0"
         >
           {/* Main Description */}
@@ -134,17 +118,13 @@ export const AboutVideoSection = () => {
               { value: '1,000+', label: 'Families Helped' },
               { value: '360°', label: 'Full Service' },
             ].map((stat, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 + index * 0.1 }}
                 className="text-center"
               >
                 <p className="font-serif text-xl sm:text-2xl md:text-4xl text-primary">{stat.value}</p>
                 <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mt-1 sm:mt-2">{stat.label}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
 
@@ -158,7 +138,7 @@ export const AboutVideoSection = () => {
               Learn More About Us
             </motion.button>
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
